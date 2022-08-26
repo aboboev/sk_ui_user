@@ -1,0 +1,55 @@
+.p-28px {
+  padding: 25px 28px 0 25px;
+}
+.btn-group {
+  .btn {
+    padding: 12px 25px;
+    line-height: 1;
+  }
+  .btn-third {
+    background: #e6e6e6;
+  }
+}
+input.form-control {
+  height: 40px;
+  line-height: 38px;
+}
+.input-custom-group {
+  position: relative;
+  input.form-control {
+    padding-right: 54px;
+  }
+  span {
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    color: #afafaf;
+  }
+}
+.primary-size {
+  width: 230px;
+  height: 40px;
+}
+.btn-light {
+  background: #605f60;
+}
+.right-border {
+  border-right: 1px solid #c1c1c1;
+}
+.percent-row input.form-control {
+  text-align: center;
+}
+h6 {
+  font-size: 16px;
+}
+.btn-sm {
+  width: 84px;
+  height: 20px;
+  padding: 0;
+  line-height: 18px;
+  margin-left: 20px;
+}
+.text-underline {
+  text-decoration: underline;
+  color: inherit;
+}

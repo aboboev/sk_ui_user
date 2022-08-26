@@ -1,0 +1,53 @@
+<footer class="mt-5">
+    <nav class="navbar navbar-expand justify-content-center">
+        <ul class="navbar-nav">
+
+            <li class="nav-item" >
+                <a class="nav-link" href="buycoin" target="_blank">
+                    {{'FOOTER.HOW_TO_BUY_COIN' | translate}}</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="overview" target="_blank">
+                    {{'FOOTER.COIN_OVERVIEW' | translate}}</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="sellcoin" target="_blank">
+                    {{'FOOTER.HOW_TO_SELL_COIN' | translate}}</a>
+            </li>
+            <li class="nav-item mb-2" >
+                <a class="nav-link" href="contactus" target="_blank">
+                    {{'FOOTER.CONTACT_US' | translate}}</a>
+            </li>
+            <li class="nav-item mb-2" >
+                <a class="nav-link" href="https://sistemkoin.com/api/market/ticker" target="_blank">
+                    {{'FOOTER.API' | translate}}</a>
+            </li>
+            <li class="nav-item mb-2 mb-md-0" >
+                <a class="nav-link" href="terms" target="_blank">
+                    {{'FOOTER.TERMS_CONDITIONS' | translate}} </a>
+            </li>
+            <li class="nav-item mb-2" >
+                <a class="nav-link" href="ucretler" target="_blank">
+                    {{'FOOTER.COMMISSION' | translate}}</a>
+            </li>
+            <li class="nav-item mb-2 mb-md-0" >
+                <a class="nav-link" href="https://goo.gl/forms/BANjIh59Kax9UkSp1" target="_blank">
+                    {{'FOOTER.REQUEST_FORM_FOR_LISTING' | translate}}</a>
+            </li>
+            <li class="nav-item dropdown cursor-pointer">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
+                    <i class="flag-icon {{currentLang.flagIcon}}"></i> {{currentLang.text}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" *ngFor="let lang of translator.getLanguages()" (click)="setLang(lang.code)">
+                        <i class="flag-icon {{lang.flagIcon}}"></i>
+                        {{lang.text}}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="text-center text-white">© 2018 Sistemkoin.com All Rights Reserved</div>
+</footer>

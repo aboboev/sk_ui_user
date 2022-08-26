@@ -1,0 +1,116 @@
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <a class="brand">
+            <img src="/assets/img/logo.png" alt="logo"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link white-br" [routerLink]="'/market'">
+                        <img src="/assets/icon/exchange.png" alt="exchange">{{'HEADER.EXCHANGE' | translate}}</a>
+                </li>
+                <!--<li class="nav-item" [routerLinkActive]="['active']">-->
+                    <!--<a class="nav-link white-br" [routerLink]="'/dashboard'">-->
+                        <!--<img src="/assets/icon/labs.png" alt="exchange">{{'HEADER.Labs' | translate}}</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item" [routerLinkActive]="['active']">-->
+                    <!--<a class="nav-link white-br" [routerLink]="'/dashboard'">-->
+                        <!--<img src="/assets/icon/launchpad.png" alt="exchange">{{'HEADER.LaunchPad' | translate}} </a>-->
+                <!--</li>-->
+                <!--<li class="nav-item" [routerLinkActive]="['active']">-->
+                    <!--<a class="nav-link" [routerLink]="'/dashboard'">-->
+                        <!--<img src="/assets/icon/info.png" alt="exchange">{{'HEADER.Info' | translate}}</a>-->
+                <!--</li>-->
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!settings.getAppSetting('is_loggedin')">
+                    <div class="nav-link grey-br">
+                        <a class="cursor-pointer" (click)="onClickLogin()">
+                            <strong>{{'HEADER.LOGIN' | translate}}</strong>
+                        </a>
+                        <span class="text-grey mx-1">{{'HEADER.OR' | translate}}</span>
+                        <a class="cursor-pointer" (click)="onClickSignup()">
+                            <strong class="text-yellow">{{'HEADER.REGISTER' | translate}}</strong>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item" *ngIf="settings.getAppSetting('is_loggedin')">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        {{'HEADER.WALLET' | translate}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" [routerLink]="['/balance']">
+                            {{'HEADER.BALANCE' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/deposit']">
+                            {{'HEADER.DEPOSIT' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/withdraw']">
+                            {{'HEADER.WITHDRAW' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/transactions']">
+                            {{'HEADER.TRANSACTION_HISTORY' | translate}}
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item grey-br" [routerLinkActive]="['active']" *ngIf="settings.getAppSetting('is_loggedin')">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        {{'HEADER.FINANCIAL_TRANSACTION' | translate}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" [routerLink]="['/tlwallet']">
+                            {{'HEADER.TL_WALLET' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/usdwallet']">
+                            {{'HEADER.USD_WALLET' | translate}}
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/eurowallet']">
+                            {{'HEADER.EURO_WALLET' | translate}}
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item" *ngIf="settings.getAppSetting('is_loggedin')">
+                    <a class="nav-link dropdown-toggle grey-br" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="fa fa-user-circle"></i> {{settings.getUserSetting('name')}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" [routerLink]="['/profile']">
+                            {{'HEADER.MY_PROFILE' | translate}}
+                        </a>
+                        <hr/>
+                        <a class="dropdown-item" (click)="logout()">
+                            {{'HEADER.LOGOUT' | translate}}
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown cursor-pointer">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="flag-icon {{currentLang.flagIcon}}"></i> {{currentLang.text}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" *ngFor="let lang of translator.getLanguages()" (click)="setLang(lang.code)">
+                            <i class="flag-icon {{lang.flagIcon}}"></i>
+                            {{lang.text}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<router-outlet></router-outlet>
+<layout-footer></layout-footer>

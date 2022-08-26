@@ -1,0 +1,269 @@
+<div class="page-container">
+    <div class="container">
+        <h3 class="mb-4">
+            {{'HEADER.TL_WALLET' | translate}}
+        </h3>
+        <div class="box"  *ngIf="iban_code == ''">
+            <div class="row">
+                <div class="col-md-12">
+                    {{'TLWALLET.NO_IBAN_CODE_MSG' | translate}}<a [routerLink]="['/bank']">{{'TLWALLET.HERE' | translate}}</a>.
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" *ngIf="iban_code != ''">
+            <div class="col-md-6 box mr-md-2">
+                <h5 class="text-center">{{'TLWALLET.TL_DEPOSIT' | translate}}</h5>
+                <div class="form-group row">
+                    <label class="col-12">{{'TLWALLET.DEPOSIT_AMOUNT' | translate}}</label>
+                    <div class="col-sm-12">
+                        <input type="number" step=0.01 class="form-control" name="deposit_amount" [(ngModel)]="deposit.amount">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>{{'TLWALLET.SELECT_IBAN_CODE' | translate}}</label>
+                    <select class="form-control" name="deposit_address" [(ngModel)]="deposit.to_address">
+                        <option *ngFor="let bank of banks" value="{{bank.name}}">{{bank.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label>{{'TLWALLET.AMOUNT_WANT_DEPOSIT' | translate}}</label>
+                        <input class="form-control" value='{{deposit.amount | number:"1.2-2"}} ₺' readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>{{'TLWALLET.DEPOSIT_FEE' | translate}}</label>
+                        <input class="form-control" value="{{settings.getSystemSetting('tl_deposit_fee') | number:'1.2-2'}} ₺" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label>{{'TLWALLET.AMOUNT_TO_DEPOSIT' | translate}}</label>
+                        <input class="form-control" value="{{(deposit.amount - settings.getSystemSetting('tl_deposit_fee')) | number:'1.2-2'}} ₺" readonly>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary with-border primary-size" (click)="depositTL()">{{'TLWALLET.DEPOSIT_TL' | translate}}
+                    </button>
+                </div>
+                <hr *ngIf="translator.getCurrentLangCode() == 'tr'" />
+                <div class="row mt-3" *ngIf="translator.getCurrentLangCode() == 'tr'">
+                    <div class="col-md-12">
+                        <label>Lütfen banka hesabınıza girerek yukarıda verilen IBAN koduna, belirtmiş olduğunuz tutarı havale/EFT yapınız.</label>
+                        <label>Para transferi esnasında açıklama kısmına yalnızca yukarıda verilen kodu yazınız.</label>
+                        <label>NOT: 1 saat içerisinde transfer edilmeyen tutarlar sistem tarafından otomatik olarak iptal edilmektedir.</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 box" *ngIf="deposited">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <p class="text-danger">
+                            {{'TLWALLET.COMPANY_NAME' | translate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row m-t-10" >
+                    <div class="col-md-4">
+                        <label>{{'TLWALLET.SELECT_IBAN_CODE' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <label>{{depositinfo.to_address}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>{{'TLWALLET.YOUR_IBAN_CODE' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <label>{{depositinfo.iban_code}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>{{'LABEL.CONFIRM_CODE' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <label>{{depositinfo.txid}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>{{'LABEL.AMOUNT' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <label>{{depositinfo.amount | number:'1.0-2'}}</label>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <button class="btn btn-warning with-border primary-size" (click)="deposited=false">
+                        {{'BUTTON.CONFIRM' | translate}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6 box" *ngIf="!deposited">
+                <h5 class="text-center">{{'TLWALLET.TL_WITHDRAW' | translate}}</h5>
+                <div class="form-group row">
+                    <label class="col-12">{{'TLWALLET.WITHDRAW_AMOUNT' | translate}}</label>
+                    <div class="col-sm-12">
+                        <input type="number" step=0.001 class="form-control" name="withdraw_amount"
+                               [(ngModel)]="withdraw.amount">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>{{'TLWALLET.YOUR_IBAN_CODE' | translate}}</label>
+                    <input type="text" class="form-control" name="withdraw_address" value="{{withdraw.to_address}}" readonly>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label>{{'LABEL.BALANCE' | translate}}</label>
+                        <input class="form-control" value="{{settings.getBalance('TL') | number:'1.2-2'}} ₺" readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>{{'TLWALLET.AMOUNT_WANT_WITHDRAW' | translate}}</label>
+                        <input class="form-control" value="{{withdraw.amount | number:'1.2-2'}} ₺" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label>{{'TLWALLET.WITHDRAW_FEE' | translate}}</label>
+                        <input class="form-control" value="{{settings.getSystemSetting('tl_withdraw_fee') | number:'1.2-2'}} ₺" readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>{{'TLWALLET.AMOUNT_TO_WITHDRAW' | translate}}</label>
+                        <input class="form-control" value="{{(withdraw.amount - settings.getSystemSetting('tl_withdraw_fee')) | number:'1.2-2'}} ₺" readonly>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-warning with-border primary-size" (click)="withdrawTL()">
+                        {{'TLWALLET.WITHDRAW_TL' | translate}}
+                    </button>
+                </div>
+                <hr *ngIf="translator.getCurrentLangCode() == 'tr'" />
+                <div class="row mt-3" *ngIf="translator.getCurrentLangCode() == 'tr'">
+                    <div class="col-md-12">
+                        <label>AKBANK hesaplarına 7 gün 24 saat, diğer banka hesaplarına ise sadece işgünlerinde 0900-1700 saatleri arasında çekim yapabilirsiniz. </label>
+                        <label>Bu saatler dışında vermiş olduğunuz çekim talepleri, takip eden ilk iş günü 09.00'da işleme alınır.</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="my-4">
+            {{'TLWALLET.PENDING_TRANSACTIONS' | translate}}
+        </h3>
+        <div class="table-responsive history-table box">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{'LABEL.TYPE' | translate}}</th>
+                    <th>{{'LABEL.STATUS' | translate}}</th>
+                    <th>{{'LABEL.TIME' | translate}}</th>
+                    <th>{{'LABEL.AMOUNT' | translate}}</th>
+                    <th>{{'LABEL.ADDRESS' | translate}}</th>
+                    <th>{{'LABEL.CONFIRM_CODE' | translate}}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let tx of pendingLists">
+                    <td><label class="label label-sm " [ngClass]="{'label-success': tx.type == 3, 'label-info': tx.type == 1}">
+                        {{(tx.type == 1 ? 'LABEL.WITHDRAW' : 'LABEL.DEPOSIT') | translate}}</label>
+                    </td>
+                    <td>
+                        <label [ngClass]="{'label-purple': tx.status == 0, 'label-danger' : tx.status == 2}">
+                            {{(tx.status == 0 ? 'LABEL.PENDING' : 'LABEL.FAILED') | translate}}
+                        </label>
+                    </td>
+                    <td>{{tx.datetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{(tx.type == 3 ? tx.dest_amount : tx.src_amount) | number:'1.2-2'}}</td>
+                    <td>{{tx.type == 3 ? tx.to_address : tx.from_address}}</td>
+                    <td>{{tx.type == 3 ? tx.txid : ''}}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-danger" (click)="cancelTransaction(tx.id)">Cancel</button>
+                    </td>
+                </tr>
+                <tr *ngIf="pendingLists?.length == 0">
+                    <td class="text-center" colspan="7">
+                        {{'TLWALLET.NO_PENDING_FOUND' | translate}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="my-4">
+            {{'TLWALLET.PAST_TRANSACTIONS' | translate}}
+        </h3>
+        <div class="table-responsive history-table box">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{'LABEL.TYPE' | translate}}</th>
+                    <th>{{'LABEL.STATUS' | translate}}</th>
+                    <th>{{'LABEL.TIME' | translate}}</th>
+                    <th>{{'LABEL.AMOUNT' | translate}}</th>
+                    <th>{{'LABEL.ADDRESS' | translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let tx of pastLists">
+                    <td><label class="label label-sm " [ngClass]="{'label-primary': tx.type == 3, 'label-info': tx.type == 1}">
+                        {{(tx.type == 1 ? 'LABEL.WITHDRAW' : 'LABEL.DEPOSIT') | translate}}</label>
+                    </td>
+                    <td><label class="label label-sm ">{{'LABEL.SUCCESS' | translate}}</label></td>
+                    <td>{{tx.datetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{(tx.type == 3 ? tx.dest_amount : tx.src_amount) | number:'1.2-2'}}
+                    </td>
+                    <td>{{tx.type == 3 ? tx.to_address : tx.from_address}}</td>
+                </tr>
+                <tr *ngIf="pastLists?.length == 0">
+                    <td class="text-center" colspan="5">
+                        {{'TLWALLET.NO_TRANSACTIONS_FOUND' | translate}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<modal-dialog [(visible)]="showAuthModal" [closable]="false">
+    <form class="mt-5">
+        <div class="form-group row">
+            <label class="col-sm-4  col-form-label text-sm-right pr-0" [ngSwitch]="allowed_g2f">
+                <div *ngSwitchCase="1">{{'AUTH.GOOGLE_AUTHENTICATION_CODE' | translate}}: </div>
+                <div *ngSwitchCase="2">{{'AUTH.SMS_AUTHENTICATION_CODE' | translate}}: </div>
+                <div *ngSwitchCase="3">{{'AUTH.EMAIL_AUTHENTICATION_CODE' | translate}}: </div>
+            </label>
+
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-12 pr-0">
+                        <input type="text" class="text-center form-control" name="auth_code" [(ngModel)]="auth_code"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-2">
+            <button type="button" class="btn btn-warning dialog-button" (click)="submitWithdraw()">{{'BUTTON.SUBMIT' | translate}}</button>
+            <button type="button" class="btn btn-info dialog-button ml-3" (click)="showAuthModal = !showAuthModal">{{'BUTTON.CANCEL' | translate}}
+            </button>
+        </div>
+    </form>
+</modal-dialog>

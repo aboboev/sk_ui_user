@@ -1,0 +1,59 @@
+@import '_variables';
+@import '_layout';
+@import '_box';
+@import '_form';
+@import '_text';
+@import '_pagination';
+@import '_button';
+@import '_switch';
+@import '_radio';
+@import '_table';
+@import '_spinner';
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.intl-tel-input .country-list .country.highlight {
+  margin: initial !important;
+}
+
+
+.table-responsive::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 0px;
+  background: #c2c2c2;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 0px;
+  background: #c2c2c2;
+}
+::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background: #e6e6e6;
+}
+::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background: #e6e6e6;
+}
+
+// hide spin for input type=number
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}

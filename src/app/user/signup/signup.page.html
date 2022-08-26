@@ -1,0 +1,97 @@
+<div class="wrapper">
+    <div class="text-center mb-5">
+        <a [routerLink]="['/']"><img src="/assets/img/logo1.png"></a>
+    </div>
+
+    <div class="box">
+        <form autocomplete="off" [formGroup]="signup">
+            <h2 class="text-center">
+                <span>{{'AUTH.REGISTER' | translate}}</span>
+            </h2>
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" formControlName="name"
+                       [(ngModel)]="signupInfo.name" placeholder="{{'AUTH.NAME' | translate}}">
+                <app-field-error-display [displayError]="validate.isFieldValid(signup, 'name')"
+                                         errorMsg="{{'AUTH.NAME_VALIDATION' | translate}}">
+                </app-field-error-display>
+            </div>
+            <div class="form-group">
+                <input type="text" name="surname" class="form-control" formControlName="surname"
+                       [(ngModel)]="signupInfo.surname"
+                       placeholder="{{'AUTH.SURNAME' | translate}}">
+                <app-field-error-display
+                        [displayError]="validate.isFieldValid(signup, 'surname')"
+                        errorMsg="{{'AUTH.SURNAME_VALIDATION' | translate}}">
+                </app-field-error-display>
+            </div>
+
+            <div class="form-group">
+                <input type="tel" name="phone" id="phone" class="form-control"
+                       formControlName="phone"
+                       [(ngModel)]="signupInfo.phone"
+                       placeholder="{{'AUTH.PHONE_NUMBER' | translate}}">
+                <app-field-error-display [displayError]="validate.isFieldValid(signup, 'phone')"
+                                         errorMsg="{{'AUTH.PHONE_VALIDATION' | translate}}">
+                </app-field-error-display>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="email" class="form-control" formControlName="email"
+                       [(ngModel)]="signupInfo.email"
+                       placeholder="{{'AUTH.EMAIL_ADDRESS' | translate}}">
+                <app-field-error-display [displayError]="validate.isFieldValid(signup, 'email')"
+                                         errorMsg="{{'AUTH.EMAIL_VALIDATION' | translate}}">
+                </app-field-error-display>
+            </div>
+
+            <div class="form-group">
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       formControlName="password"
+                       [(ngModel)]="signupInfo.password"
+                       placeholder="{{'AUTH.PASSWORD' | translate}}">
+                <app-field-error-display
+                        [displayError]="validate.isFieldValid(signup, 'password')"
+                        errorMsg="{{'AUTH.PASSWORD_VALIDATION' | translate}}">
+                </app-field-error-display>
+            </div>
+
+            <div class="form-group">
+                <input type="password"
+                       class="form-control"
+                       name="confirmPassword"
+                       formControlName="confirmPassword"
+                       placeholder="{{'AUTH.RETYPE_PASSWORD' | translate}}">
+                <app-field-error-display
+                        [displayError]="validate.isFieldValid(signup, 'confirmPassword')"
+                        errorMsg="{{'AUTH.RE_PASSWORD_VALIDATION' | translate}}">
+                </app-field-error-display>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="ref_name" class="form-control"
+                       formControlName="ref_name" readonly
+                       [(ngModel)]="signupInfo.ref_name"
+                       placeholder="{{'AUTH.REFERENCE' | translate}}">
+            </div>
+
+            <div class="form-group">
+                <label class="custom-checkbox mb-0">{{'AUTH.AGREE_TERMS' | translate}}
+                    <a class="text-yellow" href="/terms" target="_blank">
+                        {{'FOOTER.TERMS_CONDITIONS' | translate}} </a>
+                    <input type="checkbox" id="accept-term" name="optionsCheckboxes"
+                           formControlName="agree"
+                           [(ngModel)]="signupInfo.agree">
+                    <span></span>
+                </label>
+            </div>
+
+            <button class="btn btn-warning w-100 btn-main mb-5" (click)="onSignup()">{{'AUTH.REGISTER' | translate}}</button>
+            <p class="text-center">{{'AUTH.HAVE_ACCOUNT_SIGN_IN' | translate}}
+                <a class="text-yellow cursor-pointer" [routerLink]="['/login']">{{'AUTH.LOG_IN' | translate}}</a>
+            </p>
+        </form>
+    </div>
+    <user-footer></user-footer>
+</div>

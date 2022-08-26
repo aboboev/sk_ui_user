@@ -1,0 +1,132 @@
+<div class="wrapper">
+    <div class="text-center mb-5">
+        <a [routerLink]="['/']"><img src="/assets/img/logo1.png"></a>
+    </div>
+
+    <div class="box mx-auto" style="max-width:800px" *ngIf="step == 0">
+        <div style="max-width: 663px; margin: 0 auto">
+            <h2 class="text-center">{{'AUTH.SET_AUTH_TITLE' | translate}}</h2>
+            <div class="row mt-5 text-center">
+                <div class="col-md-4 cursor-pointer" [ngClass]="{'selected': allowed_g2f == 1}" (click)="allowed_g2f = 1;">
+                    <i class="fa fa-google"></i> Google Authenticator
+                </div>
+                <div class="col-md-4 cursor-pointer" [ngClass]="{'selected': allowed_g2f == 2}" (click)="allowed_g2f = 2;">
+                    <i class="fa fa-mobile"></i> SMS
+                </div>
+                <div class="col-md-4 cursor-pointer" [ngClass]="{'selected': allowed_g2f == 3}" (click)="allowed_g2f = 3;">
+                    <i class="fa fa-envelope"></i> Email
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-warning btn-main mt-5 mb-1 mr-5" (click)="onNext()">{{'BUTTON.NEXT' | translate}} <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <hr/>
+            <p class="mt-5">
+                <strong class="text-yellow">{{'COMMON.NOTE' | translate}}:</strong>{{'AUTH.SET_AUTH_NOTE' | translate}}
+            </p>
+        </div>
+    </div>
+
+    <div class="box mx-auto" style="max-width:800px" *ngIf="step == 1 && allowed_g2f == 1">
+        <div style="max-width: 663px; margin: 0 auto">
+            <h2 class="text-center">{{'AUTH.SET_AUTH_TITLE' | translate}}</h2>
+
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <img *ngIf="google_secret_code != ''" style="width: 200px; height: 200px;"
+                         src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/sistemkoin.com:{{email}}?secret={{google_secret_code}}&issuer=sistemkoin.com"/>
+                </div>
+
+                <div class="col-md-6 text-left" style="margin-top: 20px;">
+                    <p>{{'AUTH.GOOGLE_SECRET_CODE' | translate}} : </p>
+                    <p class="font-weight-bold text-center">{{google_secret_code}}</p>
+                    <p>{{'AUTH.GOOGLE_AUTHENTICATION_CODE' | translate}} : </p>
+                    <input type="text" name="code" class="form-control text-center" name="g2f_code" [(ngModel)]="confirm_code">
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button class="btn btn-warning btn-main mt-5 mb-1 mr-5" (click)="step = 0;">{{'BUTTON.BACK' | translate}} <i class="fa fa-arrow-left"></i></button>
+                <button class="btn btn-warning btn-main mt-5 mb-1 mr-5" (click)="onSubmitCode()">{{'BUTTON.SUBMIT' | translate}}</button>
+            </div>
+            <hr/>
+            <p class="mt-5">
+                <strong class="text-yellow">{{'COMMON.NOTE' | translate}}:</strong>{{'AUTH.GOOGLE_AUTH_NOTE' | translate}}
+            </p>
+        </div>
+    </div>
+
+    <div class="box mx-auto" style="max-width:800px" *ngIf="step == 1 && allowed_g2f == 2">
+        <div style="max-width: 663px; margin: 0 auto">
+            <h2 class="text-center">{{'AUTH.SET_AUTH_TITLE' | translate}}</h2>
+
+            <form class="mt-5">
+                <!--<div class="form-group row">-->
+                    <!--<label class="col-sm-4  col-form-label text-sm-right pr-0">-->
+                        <!--{{'AUTH.PHONE_NUMBER' | translate}}:-->
+                    <!--</label>-->
+                    <!--<div class="col-sm-6">-->
+                        <!--<input type="tel" name="phone" id="phone" class="form-control">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{'AUTH.SMS_AUTHENTICATION_CODE' | translate}}:
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-12 pr-0">
+                                <input type="text" class="text-center form-control" name="sms_code" [(ngModel)]="confirm_code"/>
+                            </div>
+                            <!--<div class="col-4">-->
+                                <!--<button class="btn btn-warning w-100 btn-send with-border" (click)="onSendSMS()">-->
+                                    <!--{{'AUTH.SEND_SMS' | translate}}-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="text-right">
+                <button class="btn btn-warning btn-main mt-5 mb-1 mr-5" (click)="step = 0;">{{'BUTTON.BACK' | translate}} <i class="fa fa-arrow-left"></i></button>
+                <button class="btn btn-warning btn-main mt-5 mb-1 mr-5" (click)="onSubmitCode()">{{'BUTTON.SUBMIT' | translate}}</button>
+            </div>
+            <hr/>
+            <p class="mt-5">
+                <strong class="text-yellow">{{'COMMON.NOTE' | translate}}:</strong>{{'AUTH.SMS_AUTH_NOTE' | translate}}
+            </p>
+        </div>
+    </div>
+
+    <div class="box mx-auto" style="max-width:800px" *ngIf="step == 1 && allowed_g2f == 3">
+        <div style="max-width: 663px; margin: 0 auto">
+            <h2 class="text-center">{{'AUTH.SET_AUTH_TITLE' | translate}}</h2>
+
+            <form class="mt-5">
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{'AUTH.EMAIL_AUTHENTICATION_CODE' | translate}}:
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-12 pr-0">
+                                <input type="text" class="text-center form-control" name="email_code" [(ngModel)]="confirm_code"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="text-right">
+                <button class="btn btn-warning btn-main mt-5 mb-1 mr-5" (click)="step = 0;">{{'BUTTON.BACK' | translate}} <i class="fa fa-arrow-left"></i></button>
+                <button class="btn btn-warning btn-main mt-5 mb-1 mr-5" (click)="onSubmitCode()">{{'BUTTON.SUBMIT' | translate}}</button>
+            </div>
+            <hr/>
+            <p class="mt-5">
+                <strong class="text-yellow">{{'COMMON.NOTE' | translate}}:</strong>{{'AUTH.EMAIL_AUTH_NOTE' | translate}}
+            </p>
+        </div>
+    </div>
+    <user-footer></user-footer>
+</div>

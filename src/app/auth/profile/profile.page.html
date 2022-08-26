@@ -1,0 +1,203 @@
+<div class="page-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 mb-4">
+                <div class="box box1 p-0">
+                    <div class="p-4 d-flex flex-column flex-md-row">
+                        <div class="avatar mr-4">
+
+                        </div>
+                        <div class="mt-2 mt-sm-0 topbox">
+                            <h5 class="font-weight-normal">{{settings.getUserSetting('name')}}</h5>
+                            <div>{{settings.getUserSetting('email')}}</div>
+                            <div class="text-warning font-weight-bold">
+                                <span class="my-icon" [inlineSVG]="'/assets/icon/lvl.svg'"></span>
+                                {{'PROFILE.LEVEL' | translate}} 1
+                            </div>
+                            <div>
+                                <span class="badge badge-success mr-2 px-3" *ngIf="profile.verify_status == 3">{{'PROFILE.VERIFIED' | translate}}</span>
+                                <span class="badge badge-danger mr-2 px-3" *ngIf="profile.verify_status == 2">{{'PROFILE.CANCELLED' | translate}}</span>
+                                <span class="badge badge-info mr-2 px-3" *ngIf="profile.verify_status == 1">{{'PROFILE.REVIEWING' | translate}}</span>
+                                <span class="badge badge-danger mr-2 px-3" *ngIf="profile.verify_status == 0">{{'PROFILE.UNVERIFIED' | translate}}</span>
+                                <!--<span class="badge badge-primary px-3">{{'PROFILE.GENERAL' | translate}}</span>-->
+                                <button class="btn btn-sm btn-warning ml-3" (click)="onVerifyNow()" *ngIf="profile.verify_status == 2 || profile.verify_status == 0">{{'BUTTON.VERIFY_NOW' | translate}}</button>
+                            </div>
+                            <div class="text-12">
+                                {{'PROFILE.LAST_LOGIN_TIME' | translate}}: {{profile.last_login | date:'yyyy-MM-dd HH:mm:ss'}}
+                                <!--<br/> {{'PROFILE.DISCOUNT' | translate}}-->
+                                <!--<label class="switch">-->
+                                    <!--<input type="checkbox">-->
+                                    <!--<span class="slider round"></span>-->
+                                <!--</label>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-0">
+                    <div class="pl-1 pl-sm-2 py-5">
+                        <div class="d-flex text-center levels">
+                            <div>
+                                <div>24th {{'PROFILE.WITHDRAWAL_LIMIT' | translate}}:
+                                    <br/>2 BTC
+                                </div>
+                                <span class="diamond"></span>
+                                <div>{{'PROFILE.LEVEL' | translate}} 1</div>
+                            </div>
+                            <div>
+                                <div>24th {{'PROFILE.WITHDRAWAL_LIMIT' | translate}}:
+                                    <br/>100 BTC
+                                </div>
+                                <span class="diamond disabled"></span>
+                                <div>{{'PROFILE.LEVEL' | translate}} 2</div>
+                            </div>
+                            <div>
+                                <div [innerHTML]="'PROFILE.HIGHER_LIMIT' | translate"></div>
+                                <span class="diamond disabled"></span>
+                                <div>{{'PROFILE.LEVEL' | translate}} 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 mb-4">
+                <div class="box h-100 d-flex flex-column justify-content-between change-box">
+                    <div class="d-flex align-items-center">
+                        <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/password.svg'"></span>
+                        <h6>{{'PROFILE.LOGIN_PASSWORD' | translate}}</h6>
+                        <div class="ml-auto">
+                            <button class="btn btn-warning with-border ml-3" (click)="onChangePassword()">{{'BUTTON.CHANGE' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/anti-phishing.svg'"></span>
+                        <div>
+                            <h6>{{'PROFILE.BANK_ACCOUNT' | translate}}</h6>
+                        </div>
+                        <div class="ml-auto">
+                            <button class="btn btn-warning with-border ml-3" (click)="onUpdateBank()">{{'BUTTON.CHANGE' | translate}}</button>
+                        </div>
+                    </div>
+                    <!--<div class="d-flex">-->
+                        <!--<span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/anti-phishing.svg'"></span>-->
+                        <!--<div>-->
+                            <!--<h6>{{'PROFILE.ANTI_PHISHING_CODE' | translate}}</h6>-->
+                            <!--<p>-->
+                                <!--{{'PROFILE.ANTIPISHING_TEXT' | translate}}-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class="ml-auto">-->
+                            <!--<button class="btn btn-third with-border ml-3">{{'BUTTON.CHANGE' | translate}}</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="d-flex mb-4">
+                        <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/api.svg'"></span>
+                        <div>
+                            <h6>{{'PROFILE.API' | translate}}</h6>
+                            <p>{{'PROFILE.API_TEXT' | translate}}
+                            </p>
+                        </div>
+                        <div class="ml-auto">
+                            <button class="btn btn-third with-border ml-3">{{'BUTTON.COMING_SOON' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 mb-4">
+                <div class="box change-box">
+                    <div class="d-flex mt-4">
+                        <span class="mr-3"><i class="fa fa-google auth-icon"></i></span>
+                        <div>
+                            <h6>{{'PROFILE.GOOGLE_AUTHENTICATION' | translate}}</h6>
+                            <p>
+                                {{'PROFILE.GOOGLEAUTH_TEXT' | translate}}
+                            </p>
+                        </div>
+                        <div class="ml-auto" *ngIf="profile.allowed_g2f != 1">
+                            <button class="btn btn-warning with-border ml-3">{{'BUTTON.ENABLE' | translate}}</button>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="d-flex ">
+                        <span class="mr-3"><i class="fa fa-mobile auth-icon"></i></span>
+                        <div>
+                            <h6>{{'PROFILE.SMS_AUTHENTICATION' | translate}}</h6>
+                            <p>
+                                {{'PROFILE.SMSAUTH_TEXT' | translate}}
+                            </p>
+                        </div>
+                        <div class="ml-auto" *ngIf="profile.allowed_g2f != 2">
+                            <button class="btn btn-warning with-border ml-3" (click)="onEnableSMS()">{{'BUTTON.ENABLE' | translate}}</button>
+                        </div>
+                    </div>
+                    <hr class="my-5">
+
+                    <div class="d-flex mb-5">
+                        <span class="mr-3"><i class="fa fa-envelope auth-icon"></i></span>
+                        <div>
+                            <h6>{{'PROFILE.EMAIL_AUTHENTICATION' | translate}}</h6>
+                            <p>
+                                {{'PROFILE.EMAILAUTH_TEXT' | translate}}
+                            </p>
+                        </div>
+                        <div class="ml-auto" *ngIf="profile.allowed_g2f != 3">
+                            <button class="btn btn-warning with-border ml-3">{{'BUTTON.ENABLE' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 mb-4">
+                <div class="box change-box h-100">
+                    <h6 class="mb-3">
+                        <span class="svg-icon mr-2" [inlineSVG]="'/assets/icon/withdrawl.svg'"></span>
+                        {{'PROFILE.WITHDRAWAL_ADDRESS_MANAGEMENT' | translate}}
+                    </h6>
+                    <div class="row">
+                        <p class="col-8">{{'PROFILE.WITHDRAWAL_TEXT' | translate}}</p>
+                        <div class="col-4">
+                            {{'PROFILE.WHITELIST' | translate}}
+                            <label class="switch ml-3">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5 pt-5">
+                        <button class="btn btn-third with-border" style="width:200px">{{'BUTTON.COMING_SOON' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5>{{'PROFILE.LOGIN_HISTORY' | translate}}</h5>
+        <div class="table-container mb-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{'PROFILE.DATE' | translate}}</th>
+                    <th>{{'PROFILE.DEVICE' | translate}}</th>
+                    <th>{{'PROFILE.LOCATION' | translate}}</th>
+                    <th>{{'PROFILE.IP_ADDRESS' | translate}}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of loginData">
+                    <td>{{data.created_at | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{data.browser}}({{data.device}})</td>
+                    <td>{{data.country}}</td>
+                    <td>{{data.ip_address}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,88 @@
+.btn {
+  border-radius: 0px;
+  &:focus,
+  &:active {
+    box-shadow: none;
+  }
+}
+.btn-primary {
+  background: $main;
+  border: 0;
+  &:hover,
+  &:not(:disabled):not(.disabled):active {
+    background: $main;
+    opacity: 0.8;
+    color: white;
+  }
+}
+.btn-warning {
+  background: $yellow;
+  border: 0px;
+  color: white;
+  &:hover,
+  &:not(:disabled):not(.disabled):active {
+    background: $yellow;
+    opacity: 0.8;
+    color: white;
+  }
+}
+.btn-secondary {
+  border: 1px solid $border;
+  background: #d1d1d1;
+}
+.btn-light {
+  border: 0px;
+  background: #c1c1c1;
+  color: white;
+  &:hover,
+  &:not(:disabled):not(.disabled):active {
+    background: #c1c1c1;
+    opacity: 0.8;
+    color: white;
+  }
+}
+.btn-white {
+  background: white;
+  color: #3c3c3c;
+  &:hover,
+  &:not(:disabled):not(.disabled):active {
+    background: white;
+    opacity: 0.8;
+    color: #3c3c3c;
+  }
+}
+.btn-black {
+  background: #3c3c3c;
+  color: white;
+  &:hover,
+  &:not(:disabled):not(.disabled):active {
+    color: white;
+    background: #3c3c3c;
+    opacity: 0.8;
+  }
+}
+.btn-third {
+  background: #f7f7f7;
+  border: 1px solid $border;
+  color: #605f60;
+  &:hover,
+  &:not(:disabled):not(.disabled):active {
+    opacity: 0.8;
+  }
+}
+.btn-group .btn {
+  border: 1px solid $border;
+}
+.with-border {
+  border: 1px solid $border !important;
+}
+.with-control {
+  height: 30px !important;
+}
+.btn.primary-size {
+  width: 180px;
+  height: 35px;
+}
+.form-group {
+  align-items: center;
+}

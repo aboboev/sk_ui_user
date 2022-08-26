@@ -1,0 +1,69 @@
+<div class="wrapper">
+    <div class="container">
+        <div>
+            <div class="text-center mb-4">
+                <a [routerLink]="['/']"><img src="/assets/img/logo1.png" class="mw-100"></a>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 text-center d-none d-sm-block">
+                    <img src="/assets/img/login_bg.png" class="mw-100" alt="bg">
+                </div>
+                <div class="col-sm-6">
+                    <form class="box" autocomplete="off" [formGroup]="login">
+                        <h2 class="text-center">
+                            <span>{{'AUTH.EXISTING_USER' | translate}}</span>
+                        </h2>
+                        <p class="mt-5">
+                            <img src="/assets/icon/warning.png" alt="warning" class="mr-2">{{'AUTH.TEXT1' | translate}}
+                            <strong>https://sistemkoin.com</strong>
+                        </p>
+                        <p class="text-center my-4">
+                            <img src="/assets/img/insure.png" class="mw-100" alt="insure">
+                        </p>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control email" formControlName="email"
+                                   [(ngModel)]="loginInfo.email"
+                                   placeholder="{{'AUTH.EMAIL_ADDRESS' | translate}}" autocomplete="off">
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(login, 'email')"
+                                                     errorMsg="{{'AUTH.EMAIL_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                        <div class="form-group">
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   class="form-control password"
+                                   formControlName="password"
+                                   [(ngModel)]="loginInfo.password"
+                                   placeholder="{{'AUTH.PASSWORD' | translate}}">
+                            <app-field-error-display
+                                    [displayError]="validate.isFieldValid(login, 'password')"
+                                    errorMsg="{{'AUTH.PASSWORD_VALIDATION' | translate}}">
+                            </app-field-error-display>
+
+                        </div>
+                        <div class="form-group mt-4">
+                            <label class="custom-checkbox mb-0">{{'AUTH.KEEP_ME_LOGGED_IN' | translate}}
+                                <input type="checkbox" value="1" name="remember_login">
+                                <span></span>
+                            </label>
+                            <a class="text-yellow float-right cursor-pointer" [routerLink]="['/forgot']">
+                                {{'AUTH.FORGOT_PASSWORD' | translate}}?</a>
+                        </div>
+                        <button class="btn btn-warning w-100" (click)="onLogin()">{{'AUTH.LOG_IN' | translate}}</button>
+                        <p class="text-center">{{'AUTH.HAVE_NOT_RECEIVED_EMAIL' | translate}}?
+                            <a class="text-primary cursor-pointer" [routerLink]="['/resend']">{{'AUTH.RESEND_EMAIL' | translate}}</a>
+                        </p>
+                        <p class="text-center">{{'AUTH.NEED_AN_ACCOUNT' | translate}}?
+                            <a class="text-yellow cursor-pointer" [routerLink]="['/signup']">{{'AUTH.REGISTER' | translate}}</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <user-footer></user-footer>
+    </div>
+</div>

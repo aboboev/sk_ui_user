@@ -1,0 +1,301 @@
+<div class="page-container" *ngIf="step == 1">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box">
+            <h5 class="font-weight-normal">{{'VERIFY_ID.SELECT_IDENTITY_VERIFICATION_TYPE' | translate}}</h5>
+            <div class="row text-center icon-container">
+                <div class="col-sm-6">
+                    <img src="/assets/img/personal.png" alt="png" class="cursor-pointer" (click)="onClickPersonal()">
+                    <h5 class="mt-3 mb-2">{{'VERIFY_ID.PERSONAL' | translate}}</h5>
+                    {{'VERIFY_ID.PERSONALTEXT' | translate}}
+                </div>
+                <div class="col-sm-6">
+                    <img src="/assets/img/enterprise.png" alt="png" class="cursor-pointer" (click)="onClickEnterprise()">
+                    <h5 class="mt-3 mb-2">{{'VERIFY_ID.ENTERPRISE' | translate}}</h5>
+                    {{'VERIFY_ID.ENTERPRISETEXT' | translate}}
+                </div>
+            </div>
+            <div [innerHTML]="'VERIFY_ID.TEXT1' | translate">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-container" *ngIf="step == 2">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box">
+            <h5 class="font-weight-normal">{{'VERIFY_ID.PERSONAL_INFORMATION' | translate}}</h5>
+            <form class="box" autocomplete="off" [formGroup]="infoForm">
+                <div class="row mt-4">
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>{{'VERIFY_ID.BASIC_INFORMATION' | translate}}</label>
+                            <input type="text" class="form-control" placeholder="{{'VERIFY_ID.FIRST_NAME' | translate}}"
+                                   name="firstname" [(ngModel)]="verifydata.firstname" formControlName="firstname"/>
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(infoForm, 'firstname')"
+                                                     errorMsg="{{'VERIFY_ID.FIRSTNAME_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="{{'VERIFY_ID.LAST_NAME' | translate}}"
+                                   name="surname" [(ngModel)]="verifydata.surname" formControlName="surname"/>
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(infoForm, 'surname')"
+                                                     errorMsg="{{'VERIFY_ID.SURNAME_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" placeholder="{{'VERIFY_ID.DATE_OF_BIRTH' | translate}}"
+                                   name="birthday" [(ngModel)]="verifydata.birthday" formControlName="birthday"/>
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(infoForm, 'birthday')"
+                                                     errorMsg="{{'VERIFY_ID.BIRTHDAY_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>{{'VERIFY_ID.RESIDENTIAL_ADDRESS' | translate}}</label>
+                            <textarea class="form-control" placeholder="{{'VERIFY_ID.ADDRESS' | translate}}"
+                                      name="address" [(ngModel)]="verifydata.address" formControlName="address"></textarea>
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(infoForm, 'address')"
+                                                     errorMsg="{{'VERIFY_ID.ADDRESS_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" formControlName="postal_code"
+                                   placeholder="{{'VERIFY_ID.POSTAL_CODE' | translate}}" name="postal_code" [(ngModel)]="verifydata.postal_code"/>
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(infoForm, 'postal_code')"
+                                                     errorMsg="{{'VERIFY_ID.POSTALCODE_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="{{'VERIFY_ID.CITY' | translate}}"
+                                   name="city" [(ngModel)]="verifydata.city" formControlName="city"/>
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(infoForm, 'city')"
+                                                     errorMsg="{{'VERIFY_ID.CITY_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="country_name" [(ngModel)]="verifydata.country_code" formControlName="country_code">
+                                <option *ngFor="let name of countryName.names" value="{{name.code}}">{{name.name}}
+                                </option>
+                            </select>
+
+                            <app-field-error-display [displayError]="validate.isFieldValid(infoForm, 'country_code')"
+                                                     errorMsg="{{'VERIFY_ID.COUNTRY_VALIDATION' | translate}}">
+                            </app-field-error-display>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="text-center mt-5">
+                <button class="btn btn-warning primary-size" (click)="onClickStep2Next()">{{'BUTTON.NEXT' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-container" *ngIf="step == 3">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box">
+            <h5 class="font-weight-normal">{{'VERIFY_ID.UPLOAD_IMAGE_OF_YOUR_FACE' | translate}}</h5>
+            <form>
+            <div [innerHTML]="'VERIFY_ID.TEXT4' | translate">
+            </div>
+
+            <div class="text-center" style="margin-top:100px">
+                <div class="d-inline-block position-relative">
+                    <img src="/assets/img/image-face.png" alt="face" style="margin-left: -20px">
+                    <span class="code">Sistemkoin<br/>01.12.2018</span>
+                    <br/>
+
+                    <input type="file" id="faceimageFile" style="display: none;" name="file" class="form-control" (change)="fileChangeListener($event, 'face')">
+                    <button class="btn btn-warning primary-size mt-4" (click)="onChooseFaceImage()">{{'BUTTON.UPLOAD_IMAGE' | translate}}</button>
+                </div>
+            </div>
+            </form>
+            <div class="text-center" style="margin-top:90px">
+                <button class="btn btn-black primary-size mx-3 mb-2" (click)="onClickStep3Back()">{{'BUTTON.BACK' | translate}}</button>
+                <button class="btn btn-warning primary-size mx-3 mb-2" (click)="onClickStep3Next()">{{'BUTTON.NEXT' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-container" *ngIf="step == 4">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label>{{'VERIFY_ID.CHOOSE_ISSUING_COUNTRY' | translate}}</label>
+                </div>
+                <div class="col-sm-3">
+                    <select class="form-control" name="country_code" [(ngModel)]="verifydata.country_code">
+                        <option *ngFor="let name of countryName.names" value="{{name.code}}">{{name.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-3 mb-5">
+                <label>{{'VERIFY_ID.SELECT_ID_TYPE' | translate}}</label>
+            </div>
+
+            <div class="text-center">
+                <div class="card mb-2">
+                    <div class="card-bg passport">
+                        <img src="/assets/img/passport.png" alt="passport">
+                    </div>
+                    <button class="btn btn-warning w-100" (click)="onClickPassport()">{{'VERIFY_ID.PASSPORT' | translate}}</button>
+                </div>
+                <div class="card mb-2">
+                    <div class="card-bg identity-card">
+                        <img src="/assets/img/identity.png" alt="identity">
+                    </div>
+                    <button class="btn btn-warning w-100" (click)="onClickIDcard()">{{'VERIFY_ID.IDENTITY_CARD' | translate}}</button>
+                </div>
+                <div class="card mb-2">
+                    <div class="card-bg driving-license">
+                        <img src="/assets/img/driving_license.png" alt="driving_license">
+                    </div>
+                    <button class="btn btn-warning w-100" (click)="onClickDriving()">{{'VERIFY_ID.DRIVING_LICENSE' | translate}}</button>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <button class="btn btn-black primary-size" (click)="onClickStep4Back()">{{'BUTTON.BACK' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-container" *ngIf="step == 5">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box">
+            <h5 class="font-weight-normal">{{'VERIFY_ID.UPLOAD_PASSPORT_IMAGE' | translate}}</h5>
+            <div [innerHTML]="'VERIFY_ID.TEXT5' | translate">
+                <span class="text-yellow">Notice:</span> Please upload first main page of your passport with your face picture
+            </div>
+
+            <div class="text-center" style="margin-top:100px">
+                <div class="d-inline-block">
+                    <img src="/assets/img/passport1.png" alt="passport">
+                    <br/>
+                    <input type="file" id="passportFile" style="display: none;" name="file" class="form-control" (change)="fileChangeListener($event, 'passport')">
+                    <button class="btn btn-warning primary-size mt-5" (click)="onChoosePassportImage()">{{'BUTTON.UPLOAD_IMAGE' | translate}}</button>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top:90px">
+                <button class="btn btn-black primary-size mx-3 mb-2" (click)="onGoStep4()">{{'BUTTON.BACK' | translate}}</button>
+                <button class="btn btn-warning primary-size mx-3 mb-2" (click)="onGoStep8()">{{'BUTTON.NEXT' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-container" *ngIf="step == 6">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box">
+            <h5 class="font-weight-normal">{{'VERIFY_ID.UPLOAD_IDCARD_IMAGE' | translate}}</h5>
+            <div [innerHTML]="'VERIFY_ID.TEXT9' | translate">
+                <span class="text-yellow">Notice:</span> Please upload front side of your idcard with your face picture
+            </div>
+
+            <div class="text-center" style="margin-top:100px">
+                <div class="d-inline-block">
+                    <img src="/assets/img/idcard1.png" alt="idcard">
+                    <br/>
+                    <input type="file" id="idcardFile" style="display: none;" name="file" class="form-control" (change)="fileChangeListener($event, 'idcard')">
+                    <button class="btn btn-warning primary-size mt-5" (click)="onChooseIdcardImage()">{{'BUTTON.UPLOAD_IMAGE' | translate}}</button>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top:90px">
+                <button class="btn btn-black primary-size mx-3 mb-2" (click)="onGoStep4()">{{'BUTTON.BACK' | translate}}</button>
+                <button class="btn btn-warning primary-size mx-3 mb-2" (click)="onGoStep8()">{{'BUTTON.NEXT' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-container" *ngIf="step == 7">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box">
+            <h5 class="font-weight-normal">{{'VERIFY_ID.UPLOAD_DRIVING_LICENSE_IMAGE' | translate}}</h5>
+            <div [innerHTML]="'VERIFY_ID.TEXT6' | translate">
+                <span class="text-yellow">Notice:</span> Please upload front side of your driving license
+            </div>
+
+            <div class="text-center" style="margin-top:100px">
+                <div class="d-inline-block">
+                    <img src="/assets/img/driving_license1.png" alt="driving license">
+                    <br/>
+                    <input type="file" id="drivingFile" style="display: none;" name="file" class="form-control" (change)="fileChangeListener($event, 'driving')">
+                    <button class="btn btn-warning primary-size mt-5" (click)="onChooseDrivingImage()">{{'BUTTON.UPLOAD_IMAGE' | translate}}</button>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top:90px">
+                <button class="btn btn-black primary-size mx-3 mb-2" (click)="onGoStep4()">{{'BUTTON.BACK' | translate}}</button>
+                <button class="btn btn-warning primary-size mx-3 mb-2" (click)="onGoStep8()">{{'BUTTON.NEXT' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-container" *ngIf="step == 8">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'VERIFY_ID.TITLE' | translate}}
+        </h3>
+
+        <div class="box text-center">
+            <h5 class="my-5">{{'VERIFY_ID.AWAITING_APPROVAL' | translate}}</h5>
+            <p>
+                {{'VERIFY_ID.TEXT7' | translate}}
+                <!--<br/>-->
+                <!--<a class="text-warning">{{'VERIFY_ID.GO_BACK_TO_USER_CENTER' | translate}}</a>-->
+            </p>
+
+            <div class="box mx-auto p-4" style="max-width: 660px">
+                <ul class="pl-3 text-left">
+                    <li><p>{{'VERIFY_ID.TEXT8' | translate}}</p></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

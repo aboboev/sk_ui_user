@@ -1,0 +1,71 @@
+<div class="page-container">
+  <div class="container">
+    <h3 class="mb-4 text-center">
+      {{'withdrawal.title' | translate}}
+    </h3>
+
+    <form class="box">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>{{'withdrawal.label1' | translate}}</label>
+          <select class="form-control">
+            <option value=""></option>
+            <option value="113">113</option>
+          </select>
+        </div>
+        <div class="col-md-6 form-group">
+          <label>{{'withdrawal.label2' | translate}}</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">{{'deposit.Available' | translate}}: </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3 mb-4 text-center">
+        <button type="submit" class="btn btn-warning">{{'button.Submit' | translate}}</button>
+      </div>
+      <ul class="pl-3" [innerHTML]="'withdrawal.text1' | translate ">
+      </ul>
+    </form>
+
+    <h3 class="mt-4 mb-3 text-center">
+      {{'deposit.Transaction History' | translate}}
+    </h3>
+
+    <div>
+      <ngx-datatable [rows]="rows" [columnMode]="'force'" [scrollbarV]="true" [headerHeight]="48">
+        <ngx-datatable-column name="{{'deposit.MARKET' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            BTC
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'deposit.TOTAL' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            0.0125245
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'deposit.DATE/TIME' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            07/21/2018 22:04:07
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'deposit.STATUS' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <span class="text-success">COMPLETED</span>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [width]="70">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <button class="btn btn-sm btn-light">{{'button.View Detail' | translate}}</button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</div>

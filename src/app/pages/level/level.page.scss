@@ -1,0 +1,57 @@
+.box1 {
+  background: #fff0d8;
+  background: linear-gradient(0deg, #fff0d8 0%, #ffffff 30%);
+  background: -webkit-linear-gradient(0deg, #fff0d8 0%, #ffffff 30%);
+  background: -moz-linear-gradient(0deg, #fff0d8 0%, #ffffff 30%);
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  &:before {
+    position: absolute;
+    content: '';
+    left: 25px;
+    right: 25px;
+    top: 50px;
+    bottom: 0;
+    background: url('/assets/img/level-box1.png') no-repeat;
+    background-size: contain;
+  }
+  h6 {
+    font-size: 18px;
+    font-weight: normal;
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 36px;
+    margin-top: 16px;
+    margin-bottom: 40px;
+  }
+}
+.box2 {
+  position: relative;
+  background: #fff2e0;
+  ul {
+    padding-left: 15px;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    right: 15px;
+    width: 13%;
+    height: 100%;
+    bottom: 0px;
+    background: url('/assets/img/question.png') no-repeat;
+    background-size: contain;
+    background-position: right bottom;
+  }
+}
+.box.bg-light {
+  padding: 10px;
+  h6 {
+    font-size: 18px;
+    margin: 0;
+  }
+}
+.fa-question-circle {
+  font-size: 16px;
+}

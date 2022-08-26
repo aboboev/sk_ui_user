@@ -1,0 +1,44 @@
+.box {
+  padding: 35px 30px;
+}
+.icon-container {
+  padding: 80px 0px;
+}
+.form-group {
+  margin-bottom: 24px;
+}
+
+.card {
+  width: 150px;
+  display: inline-block;
+  margin-left: 45px;
+  margin-right: 45px;
+  border: 0px none;
+  .btn {
+    height: 40px;
+  }
+  .card-bg {
+    display: flex;
+    border: 1px solid #c1c1c1;
+    height: 150px;
+    border-bottom: 0px none;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.confirm-box {
+  padding: 80px 20px;
+  line-height: 2rem;
+}
+.code {
+  position: absolute;
+  left: 10px;
+  top: 99px;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+}
+p {
+  line-height: 2;
+}

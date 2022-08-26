@@ -1,0 +1,37 @@
+.ngx-pagination {
+  text-align: center;
+  li {
+    border: 1px solid $border;
+    background: white;
+    width: 30px;
+    height: 30px;
+    margin: 0 15px;
+    padding: 0;
+    line-height: 28px;
+  }
+  a,
+  button {
+    padding: 0 !important;
+    text-decoration: none !important;
+    color: #605f60 !important;
+  }
+  li.current {
+    background: #dadada;
+    padding: 0;
+    color: #605f60;
+  }
+  .disabled {
+    padding: 0 !important;
+  }
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+  content: '<' !important;
+  margin-right: 0 !important;
+}
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+  content: '>' !important;
+  margin-left: 0 !important;
+}

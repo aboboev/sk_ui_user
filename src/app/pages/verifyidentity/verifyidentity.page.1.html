@@ -1,0 +1,25 @@
+<div class="page-container">
+  <div class="container">
+    <h3 class="text-center mb-4">
+      {{'verifyidentity.title' | translate}}
+    </h3>
+
+    <div class="box">
+      <h5 class="font-weight-normal">{{'verifyidentity.Select Identity Verification Type' | translate}}</h5>
+      <div class="row text-center icon-container">
+        <div class="col-sm-6">
+          <img src="/assets/img/personal.png" alt="png">
+          <h5 class="mt-3 mb-2">{{'verifyidentity.Personal' | translate}}</h5>
+          {{'verifyidentity.personalText' | translate}}
+        </div>
+        <div class="col-sm-6">
+          <img src="/assets/img/enterprise.png" alt="png">
+          <h5 class="mt-3 mb-2">{{'verifyidentity.Enterprise' | translate}}</h5>
+          {{'verifyidentity.enterpriseText' | translate}}
+        </div>
+      </div>
+      <div [innerHTML]="'verifyidentity.text1' | translate">
+      </div>
+    </div>
+  </div>
+</div>

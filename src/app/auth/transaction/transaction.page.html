@@ -1,0 +1,82 @@
+<div class="page-container">
+    <div class="container">
+        <h3 class="mb-4">
+            {{'HEADER.TRANSACTION_HISTORY' | translate}}
+        </h3>
+
+        <div class="box">
+            <div class="select">
+                <label>{{'WALLET.SELECT_COIN_OR_TOKEN' | translate}}</label>
+                <select class="select2" style="width: 100%" [(ngModel)]="selCoin">
+                    <option *ngFor="let coin of coins" value="{{coin.coin}}">{{coin.coin}} - {{coin.fullname}}</option>
+                </select>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12 text-right">
+                    {{'LABEL.BALANCE' | translate}} : {{settings.getBalance(selCoin) | number:'1.8-8'}} <b>{{selCoin}}</b>
+                </div>
+            </div>
+
+            <div class="table-responsive mt-1">
+                <loader *ngIf="loading"></loader>
+                <ngx-datatable
+                        #table
+                        class="material"
+                        [rows]="history"
+                        [columnMode]="'force'"
+                        [headerHeight]="50"
+                        [footerHeight]="50"
+                        [rowHeight]="'auto'"
+                        [limit]="10">
+                    <ngx-datatable-column name="TIME">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            {{row['datetime'] * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Type">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <div [ngSwitch]="row['type']">
+                                <label class="label label-sm label-primary" *ngSwitchCase="0">{{'LABEL.MANUAL'| translate}}</label>
+                                <label class="label label-sm label-success" *ngSwitchCase="1">{{'LABEL.WITHDRAW'| translate}}</label>
+                                <label class="label label-sm " [ngClass]="{'label-warning': selCoin == row['src_coin'], 'label-danger': selCoin != row['src_coin']}" *ngSwitchCase="2">
+                                    {{(selCoin == row['src_coin'] ? 'LABEL.SELL' : 'LABEL.BUY') | translate}}
+                                </label>
+                                <label class="label label-sm label-info" *ngSwitchCase="3">{{'LABEL.DEPOSIT'| translate}}</label>
+                                <label class="label label-sm label-purple" *ngSwitchCase="4">{{'LABEL.FASTBUY'| translate}}</label>
+                                <label class="label label-sm label-megna" *ngSwitchCase="5">{{'LABEL.BONUS'| translate}}</label>
+                                <label class="label label-sm label-megna" *ngSwitchCase="6">{{'LABEL.ICO'| translate}}</label>
+                            </div>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Amount">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            {{(selCoin == row['src_coin'] ? row['src_amount'] : row['dest_amount']) | number:'1.8-8'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Pair">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            {{row['type'] == 2 ? (row['src_coin'] + '/' + row['dest_coin']) : ''}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Rate">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            {{row['type'] == 2 || row['type'] == 4 ? (row['rate'] | number:'1.8-8') : ''}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Status">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label class="label label-sm"
+                                   [ngClass]="{'label-primary': row['open'] == 1, 'label-success': row['status'] == 1, 'label-warning': row['status']==0, 'label-danger': row['status'] == 2, 'label-info': row['status'] == 3}">
+                                {{(row['open'] == 1 ? 'LABEL.OPEN' : (row['status'] == 1 ? 'LABEL.SUCCESS' :
+                                (row['status'] == 0 ? 'LABEL.PENDING' : (row['status'] == 2 ? 'LABEL.FAILED' :
+                                'LABEL.PROCESSING')))) | translate}}
+                            </label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+</div>
+

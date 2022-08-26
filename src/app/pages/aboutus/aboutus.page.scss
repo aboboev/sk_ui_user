@@ -1,0 +1,62 @@
+app-aboutus-page {
+  h6 {
+    color: #605f60;
+    font-weight: bold;
+    margin-top: 1.4rem;
+    margin-bottom: 0.7rem;
+  }
+  p {
+    line-height: 2rem;
+  }
+  .cls-1 {
+    fill: #ffad29;
+    fill-rule: evenodd;
+  }
+  .my-icon {
+    height: 68px;
+  }
+  .box-row {
+    margin-left: -10px;
+    margin-right: -10px;
+    > div {
+      position: relative;
+      margin-bottom: 20px;
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        background: white;
+        left: 10px;
+        right: 10px;
+        top: 0;
+        bottom: 0;
+        box-shadow: 0px 0px 19px 5px rgba(50, 50, 50, 0.1);
+      }
+      &:hover {
+        &:before {
+          background: #ffad29;
+        }
+        .coin-box {
+          &,
+          h6 {
+            color: white;
+          }
+        }
+        .cls-1 {
+          fill: #fff !important;
+        }
+      }
+    }
+  }
+  .coin-box {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-top: 40px;
+    color: #3c3c3c;
+    h6 {
+      color: #ffad29;
+      font-size: 18px;
+    }
+  }
+}

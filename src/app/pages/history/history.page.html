@@ -1,0 +1,46 @@
+<div class="page-container">
+  <div class="container">
+    <h3 class="text-center mb-4">
+      {{'history.title' | translate}}
+    </h3>
+
+    <div class="d-flex mb-3 align-items-center">
+      <div class="btn-group">
+        <button type="button" class="btn btn-white">{{'button.Deposit' | translate}}</button>
+        <button type="button" class="btn btn-warning">{{'button.Withdrawal' | translate}}</button>
+      </div>
+      <div class="ml-auto">
+        Export Sheet
+        <img src="/assets/icon/excel.png" alt="guard">
+      </div>
+    </div>
+
+    <div class="table-container mb-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{{'table.MARKET' | translate}}</th>
+            <th>{{'table.TOTAL' | translate}}</th>
+            <th>{{'table.DATE/TIME' | translate}}</th>
+            <th>{{'table.STATUS' | translate}}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of annoucements | paginate: { itemsPerPage: 16,currentPage: 1,totalItems: 100 }">
+            <td>BTC</td>
+            <td>0.0125245</td>
+            <td>07/21/2018 22:04:07</td>
+            <td class="text-success">COMPLETED</td>
+            <td class="text-right pr-2">
+              <button class="btn btn-light btn-sm">{{'button.View Detail' | translate}}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls directionLinks="true" autoHide="true" previousLabel="" nextLabel="" screenReaderPageLabel="page">
+    </pagination-controls>
+  </div>
+</div>

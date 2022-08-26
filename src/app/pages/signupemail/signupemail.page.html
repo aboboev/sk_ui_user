@@ -1,0 +1,77 @@
+<div class="wrapper">
+  <div class="text-center mb-5">
+    <img src="/assets/img/logo1.png">
+  </div>
+
+  <div class="box">
+    <form autocomplete="off">
+      <h2 class="text-center">
+        <span>{{'auth.Register' | translate}}</span>
+      </h2>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="{{'auth.Email Address' | translate}}" />
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-8">
+            <input type="text" class="form-control" placeholder="{{'auth.Enter Code' | translate}}" />
+          </div>
+          <div class="col-4 pl-0">
+            <button class="btn btn-warning btn-code">{{'auth.Get a Code' | translate}}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="{{'auth.Password' | translate}}" />
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="{{'auth.Re-type Password' | translate}}" />
+      </div>
+
+      <div class="form-group">
+        <label class="custom-checkbox mb-0">{{'auth.agree_terms' | translate}}
+          <a class="text-yellow" [routerLink]="'/dashboard'">
+            {{'footer.Terms & Conditions' | translate}} </a>
+          <input type="checkbox" value="1" name="remember_login">
+          <span></span>
+        </label>
+      </div>
+
+      <button class="btn btn-warning w-100 btn-main mb-5">{{'auth.Register' | translate}}</button>
+    </form>
+  </div>
+
+  <footer class="mt-5">
+    <nav class="navbar navbar-expand justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/dashboard'">
+            {{'header.Term of Use' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/dashboard'">
+            {{'header.Support' | translate}}</a>
+        </li>
+        <li class="nav-item grey-br">
+          <a class="nav-link" [routerLink]="'/dashboard'">
+            {{'header.Privacy Policy' | translate}}</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fa fa-globe"></i> {{'header.English' | translate}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="text-center text-white">© 2018 Sistemkoin.com All Rights Reserved</div>
+  </footer>
+</div>

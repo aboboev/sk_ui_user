@@ -1,0 +1,54 @@
+<div class="page-container">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'AUTH.ENABLE_SMS_AUTH' | translate}}
+        </h3>
+        <form class="box">
+            <div class="mx-auto" style="max-width: 690px">
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{'AUTH.PHONE_NUMBER' | translate}}:
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="tel" name="phone" id="phone" class="form-control" [(ngModel)]="profile.phone_number">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{'AUTH.SMS_AUTHENTICATION_CODE' | translate}}:
+                    </label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-8 pr-0">
+                                <input type="text" class="form-control"/>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-warning w-100 btn-send with-border">{{'AUTH.SEND_SMS' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{(profile.allowed_g2f == 1 ? 'AUTH.GOOGLE_AUTHENTICATION_CODE' : 'AUTH.EMAIL_AUTHENTICATION_CODE') | translate}}:
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12 text-center">
+                        <button class="btn btn-warning mt-3 btn-submit">{{'BUTTON.SUBMIT' | translate}}</button>
+                    </div>
+                </div>
+
+                <hr class="mt-5 mb-4"/>
+
+                <div class="text-center px-5">
+                    <strong class="text-yellow">{{'COMMON.NOTE' | translate}}:</strong> {{'AUTH.SMS_AUTH_NOTE' | translate}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

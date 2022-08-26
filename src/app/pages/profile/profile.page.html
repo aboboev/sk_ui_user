@@ -1,0 +1,152 @@
+<div class="page-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <div class="box box1 p-0">
+          <div class="p-4 d-flex flex-column flex-md-row">
+            <div class="avatar mr-4">
+              <img src="/assets/img/John_Doe.png">
+            </div>
+            <div class="mt-2 mt-sm-0 topbox">
+              <h5 class="font-weight-normal">John Doe</h5>
+              <div>johndoe@sistemkoin.com</div>
+              <div class="text-warning font-weight-bold">
+                <span class="my-icon" [inlineSVG]="'/assets/icon/lvl.svg'"></span>
+                {{'profile.Level' | translate}} 1
+              </div>
+              <div>
+                <span class="badge badge-secondary mr-2 px-3">{{'profile.Unverified' | translate}}</span>
+                <span class="badge badge-primary px-3">{{'profile.General' | translate}}</span>
+              </div>
+              <div class="text-12">
+                {{'profile.Last login time' | translate}}: 28-07-2018 07:05:11 IP: 162.217.12.18
+                <br/> {{'profile.discount' | translate}}
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-0">
+          <div class="pl-1 pl-sm-2 py-5">
+            <div class="d-flex text-center levels">
+              <div>
+                <div>23th {{'profile.withdrawl limit' | translate}}:
+                  <br/>2 BTC </div>
+                <span class="diamond"></span>
+                <div>{{'profile.Level' | translate}} 1</div>
+              </div>
+              <div>
+                <div>23th {{'profile.withdrawl limit' | translate}}:
+                  <br/>100 BTC </div>
+                <span class="diamond disabled"></span>
+                <div>{{'profile.Level' | translate}} 2</div>
+              </div>
+              <div>
+                <div [innerHTML]="'profile.Higher Limit' | translate"></div>
+                <span class="diamond disabled"></span>
+                <div>{{'profile.Level' | translate}} 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 mb-4">
+        <div class="box h-100 d-flex flex-column justify-content-between change-box">
+          <div class="d-flex align-items-center">
+            <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/password.svg'"></span>
+            <h6>{{'profile.Login Password' | translate}}</h6>
+            <div class="ml-auto">
+              <button class="btn btn-third with-border ml-3">{{'button.Change' | translate}}</button>
+            </div>
+          </div>
+          <div class="d-flex">
+            <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/anti-phishing.svg'"></span>
+            <div>
+              <h6>{{'profile.Anti-Phishing Code' | translate}}</h6>
+              <p>
+                {{'profile.antipishing_text' | translate}}
+              </p>
+            </div>
+            <div class="ml-auto">
+              <button class="btn btn-third with-border ml-3">{{'button.Change' | translate}}</button>
+            </div>
+          </div>
+          <div class="d-flex mb-4">
+            <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/api.svg'"></span>
+            <div>
+              <h6>{{'profile.API' | translate}}</h6>
+              <p>{{'profile.api_text' | translate}}
+              </p>
+            </div>
+            <div class="ml-auto">
+              <button class="btn btn-warning with-border ml-3">{{'button.Change' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <div class="box change-box">
+          <div class="d-flex mt-4">
+            <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/sms.svg'"></span>
+            <div>
+              <h6>{{'profile.SMS Authentication' | translate}}</h6>
+              <p>
+                {{'profile.smsauth_text' | translate}}
+              </p>
+            </div>
+            <div class="ml-auto">
+              <button class="btn btn-third with-border ml-3">{{'button.Disable' | translate}}</button>
+            </div>
+          </div>
+
+          <hr class="my-5">
+
+          <div class="d-flex mb-5">
+            <span class="svg-icon mr-3" [inlineSVG]="'/assets/icon/key.svg'"></span>
+            <div>
+              <h6>{{'profile.Google Authentication' | translate}}</h6>
+              <p>
+                {{'profile.googleauth_text' | translate}}
+              </p>
+            </div>
+            <div class="ml-auto">
+              <button class="btn btn-warning with-border ml-3">{{'button.Enable' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 mb-4">
+        <div class="box change-box h-100">
+          <h6 class="mb-3">
+            <span class="svg-icon mr-2" [inlineSVG]="'/assets/icon/withdrawl.svg'"></span>
+            {{'profile.Withdrawal Address Management' | translate}}
+          </h6>
+          <div class="row">
+            <p class="col-8">{{'profile.withdrawal_text' | translate}}</p>
+            <div class="col-4">
+              {{'profile.Whitelist' | translate}}
+              <label class="switch ml-3">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center mt-5 pt-5">
+            <button class="btn btn-warning with-border" style="width:200px">{{'profile.Address Management' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-profiledevice-component></app-profiledevice-component>
+
+  </div>
+</div>

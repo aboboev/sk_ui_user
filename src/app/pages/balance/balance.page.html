@@ -1,0 +1,79 @@
+<div class="page-container">
+  <div class="container">
+    <h3 class="mb-4">
+      {{'balance.title' | translate}}
+    </h3>
+    <div class="mt-5 d-flex align-items-center">
+      <div class="mr-5">
+        {{'balance.Estimated Value' | translate}} :
+        <h6>0.01151260 BTC / $2.04</h6>
+      </div>
+      <div class="mr-5">
+        {{'balance.24h withdrawa Limit' | translate}} :
+        <h6>100 BTC</h6>
+      </div>
+      <div>
+        {{'balance.In Use' | translate}} :
+        <h6>0 BTC</h6>
+      </div>
+      <input type="text" class="form-control ml-auto w-auto" placeholder="{{'header.Search' | translate}}" />
+    </div>
+
+    <div>
+      <ngx-datatable [rows]="rows" [scrollbarV]="true" [headerHeight]="48">
+        <ngx-datatable-column name="{{'balance.COIN' | translate}}" [width]="75">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <img src="/assets/icon/bitcoin.png"> BTC
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'balance.NAME' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            Sistemkoin
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'balance.TOTAL BALANCE' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            0.0124354234
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'balance.AVAILABLE BALANCE' | translate}}" [width]="190">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            0.01252451
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'balance.IN ORDER' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            0.00000000000000
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'balance.BTC VALUE' | translate}}" [width]="115">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            0.00051361
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [width]="90">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <button class="btn btn-sm btn-primary">Deposit</button>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [width]="90">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <button class="btn btn-sm btn-warning">Withdrawal</button>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [width]="90">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <button class="btn btn-sm btn-secondary">Trade</button>
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.ngx-datatable {
+  border: 1px solid $border;
+  background: white;
+  padding-left: 20px;
+  .datatable-header {
+    padding: 15px 0 20px 0;
+    text-transform: uppercase;
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 50px;
+      bottom: 0px;
+      border-top: 1px solid $border;
+    }
+  }
+  .datatable-body {
+    padding-top: 20px;
+  }
+}
+.table-container {
+  border: 1px solid $border;
+  background: white;
+  padding: 0 20px 20px;
+}
+.table {
+  thead th {
+    padding: 15px 0 20px 0;
+    border-bottom: 1px solid $border;
+    font-weight: normal;
+  }
+  td,
+  th {
+    border: 0px;
+  }
+  tbody {
+    td,
+    th {
+      padding: 16px 0 0;
+    }
+  }
+}

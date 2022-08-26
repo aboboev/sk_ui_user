@@ -1,0 +1,40 @@
+h3 {
+  color: #3c3c3c;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h5 {
+  color: #605f60;
+  font-weight: bold;
+  font-size: 18px;
+}
+h6 {
+  color: #605f60;
+  font-weight: bold;
+}
+small {
+  font-size: 85.7%;
+}
+.text-yellow,
+a.yellow {
+  color: $yellow !important;
+}
+.text-primary {
+  color: $main !important;
+}
+.text-grey {
+  color: #9c9c9c !important;
+}
+.text-success {
+  color: #5ebd67 !important;
+}
+.text-18 {
+  font-size: 18px;
+}
+.text-16 {
+  font-size: 16px;
+}
+.text-12 {
+  font-size: 12px !important;
+}

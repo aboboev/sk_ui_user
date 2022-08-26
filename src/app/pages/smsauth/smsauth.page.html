@@ -1,0 +1,52 @@
+<div class="page-container">
+    <div class="container">
+        <h3 class="text-center mb-4">
+            {{'smsauth.title' | translate}}
+        </h3>
+        <form class="box">
+            <div class="mx-auto" style="max-width: 690px">
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{'smsauth.Phone Number' | translate}}:
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="tel" name="phone" id="phone" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{'smsauth.SMS Authentication Code' | translate}}:
+                    </label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-8 pr-0">
+                                <input type="text" class="form-control"/>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-warning w-100 btn-send with-border">{{'smsauth.Send SMS' |
+                                    translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4  col-form-label text-sm-right pr-0">
+                        {{'smsauth.Google Authentication Code' | translate}}:
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control"/>
+                        <br/>
+                        <button class="btn btn-warning mt-3 btn-submit">{{'button.Submit' | translate}}</button>
+                    </div>
+                </div>
+
+                <hr class="mt-5 mb-4"/>
+
+                <div class="text-center px-5">
+                    <strong class="text-yellow">{{'common.Note' | translate}}:</strong> {{'smsauth.text1' | translate}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

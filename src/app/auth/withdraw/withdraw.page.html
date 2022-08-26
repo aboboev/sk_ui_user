@@ -1,0 +1,194 @@
+<div class="page-container">
+    <div class="container">
+        <h3 class="mb-4">
+            {{'HEADER.WITHDRAW' | translate}}
+        </h3>
+
+        <form class="box">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="select">
+                        <label>{{'WALLET.SELECT_COIN_OR_TOKEN' | translate}}</label>
+                        <select class="select2" style="width: 100%" [(ngModel)]="selCoin" name="coin_list">
+                            <option *ngFor="let coin of coins" value="{{coin.coin}}">{{coin.coin}} - {{coin.fullname}}
+                            </option>
+                        </select>
+
+                        <div class="row mt-5" *ngIf="selCoinInfo.withdraw == 0">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    {{'WALLET.WALLET_SUSPEND' | translate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4" *ngIf="selCoinInfo.withdraw == 1">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{'WALLET.TO_ADDRESS' | translate}}</label>
+                                    <input type="text" class="form-control" name="to_address"
+                                           [(ngModel)]="withdraw.to_address">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px;" *ngIf="selCoin == 'XRP'">
+                                    <input type="checkbox" id="tag_check" class="filled-in chk-col-light-blue"
+                                           name="tag_check" [(ngModel)]="withdraw.use_tag"/>
+                                    <label for="tag_check">{{'WALLET.DESTINATION_TAG' | translate}}</label>
+                                </div>
+                                <div class="form-group" *ngIf="selCoin == 'XRP'">
+                                    <input type="text" class="form-control" name="to_tag"
+                                           [(ngModel)]="withdraw.to_tag">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 0px;" *ngIf="selCoin == 'CVN' || selCoin == 'DEEX' || selCoin == 'SCR'">
+                                    <label class="custom-checkbox mb-0">{{'WALLET.MEMO' | translate}}
+                                        <input type="checkbox" id="memo_check" class="filled-in chk-col-light-blue"
+                                               name="memo_check" [(ngModel)]="withdraw.use_memo"/>
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="form-group" *ngIf="selCoin == 'CVN' || selCoin == 'DEEX' || selCoin == 'SCR'">
+                                    <input type="text" class="form-control" name="memo" [(ngModel)]="withdraw.memo">
+                                </div>
+
+                                <div class="form-group" *ngIf="selCoin == 'XIN'">
+                                    <label>{{'WALLET.PUBLIC_KEY' | translate}}</label>
+                                    <input type="text" class="form-control" name="public_key"
+                                           [(ngModel)]="withdraw.public_key">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 0px;" *ngIf="selCoin == 'ETN'">
+                                    <label class="custom-checkbox mb-0">Payment ID
+                                        <input type="checkbox" id="paymentid_check" class="filled-in chk-col-light-blue"
+                                               name="memo_check" [(ngModel)]="withdraw.use_paymentid"/>
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="form-group" *ngIf="selCoin == 'ETN'">
+                                    <input type="text" class="form-control" name="etn_paymentid" [(ngModel)]="withdraw.paymentid">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{'LABEL.AMOUNT' | translate}}</label>
+                                    <input type="number" step=0.001 class="form-control" name="to_amount"
+                                           [(ngModel)]="withdraw.to_amount">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label>{{'LABEL.BALANCE' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <label (click)="withdrawAll()" style="cursor: pointer;">{{settings.getBalance(selCoin)
+                                            | number:'1.8-8'}}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>{{'WALLET.MIMIMUM_WITHDRAW_AMOUNT' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <label>{{selCoinInfo.min_withdraw | number:'1.0-8'}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>{{'WALLET.THE_AMOUNT_YOU_WANT_TO_WITHDARW' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <label>{{withdraw.to_amount | number:'1.8-8'}}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>{{'WALLET.WITHDRAW_FEE' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <label>{{selCoinInfo.withdraw_fee | number:'1.8-8'}}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>{{'WALLET.AMOUNT_TO_PAY' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <label>{{(withdraw.to_amount - selCoinInfo.withdraw_fee) |
+                                            number:'1.8-8'}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 mb-4 row text-right">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-warning" (click)="withdrawCoin()">
+                                    {{selCoin}} {{'LABEL.WITHDRAW' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <h3 class="mt-4 mb-3">
+            {{'WALLET.WITHDRAW_HISTORY' | translate}} <a class="cursor-pointer"><i class="fa fa-refresh" (click)="refreshWithdrawList()"></i></a>
+        </h3>
+
+        <div class="table-responsive history-table box">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{'LABEL.STATUS' | translate}}</th>
+                    <th>{{'LABEL.AMOUNT' | translate}}</th>
+                    <th>{{'LABEL.TIME' | translate}}</th>
+                    <th>{{'LABEL.ACTION' | translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let tx of withdrawTx">
+                    <td [ngSwitch]="tx.status">
+                        <label class="label label-sm label-purple" *ngSwitchCase="0">{{'LABEL.PENDING'| translate}}</label>
+                        <label class="label label-sm label-success" *ngSwitchCase="1">{{'LABEL.SUCCESS'| translate}}</label>
+                        <label class="label label-sm label-danger" *ngSwitchCase="2">{{'LABEL.FAILED'| translate}}</label>
+                        <label class="label label-sm label-info" *ngSwitchCase="3">{{'LABEL.PROCESSING'| translate}}</label>
+                        <label class="label label-sm label-megna" *ngSwitchCase="4">{{'LABEL.CONFIRM_EMAIL'| translate}}</label>
+                    </td>
+                    <td>{{tx.src_amount | number:'1.8-8'}}</td>
+                    <td >{{tx.datetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>
+                        <a target="_blank" href="{{selCoinInfo.explorer_url + tx.txid}}" *ngIf="tx.txid != ''" class="btn btn-sm btn-light">{{'BUTTON.DETAIL' | translate}}</a>
+                        <button type="button" class="btn btn-sm btn-danger ml-3" *ngIf="(tx.status == 0 || tx.status == 4) && validate.isNullOrEmpty(tx.txid)" (click)="cancelWithdraw(tx.id)">
+                            {{'BUTTON.DELETE' | translate}}</button>
+                    </td>
+                </tr>
+                <tr *ngIf="withdrawTx?.length == 0">
+                    <td class="text-center" colspan="4">
+                        {{'WALLET.NO_WITHDRAW' | translate}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<modal-dialog [(visible)]="showAuthModal" [closable]="false">
+    <form class="mt-5">
+        <div class="form-group row">
+            <label class="col-sm-4  col-form-label text-sm-right pr-0" [ngSwitch]="allowed_g2f">
+                <div *ngSwitchCase="1">{{'AUTH.GOOGLE_AUTHENTICATION_CODE' | translate}}: </div>
+                <div *ngSwitchCase="2">{{'AUTH.SMS_AUTHENTICATION_CODE' | translate}}: </div>
+                <div *ngSwitchCase="3">{{'AUTH.EMAIL_AUTHENTICATION_CODE' | translate}}: </div>
+            </label>
+
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-12 pr-0">
+                        <input type="text" class="text-center form-control" name="auth_code" [(ngModel)]="auth_code"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-2">
+            <button type="button" class="btn btn-warning dialog-button" (click)="submitWithdraw()">{{'BUTTON.SUBMIT' | translate}}</button>
+            <button type="button" class="btn btn-info dialog-button ml-3" (click)="showAuthModal = !showAuthModal">{{'BUTTON.CANCEL' | translate}}
+            </button>
+        </div>
+    </form>
+</modal-dialog>

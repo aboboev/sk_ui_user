@@ -1,0 +1,52 @@
+<div class="bg d-flex align-items-center justify-content-center">
+  <h1 class="mb-4 text-center">
+    <span class="text-yellow">Sistemkoin</span>
+    {{'coinofmonth.Community' | translate}}
+    <br/>{{'coinofmonth.Coin of the Month' | translate}}
+    <span class="text-yellow">{{'coinofmonth.Round' | translate}}</span> 1
+    <h4 class="mt-4">{{'coinofmonth.Deadline' | translate}}: 30-07-2018 06:00:00</h4>
+  </h1>
+</div>
+<div class="page-container">
+  <div class="container">
+    <p>{{'coinofmonth.text1' | translate}}
+      <a class="text-yellow">{{'coinofmonth.text2' | translate}} >></a>
+    </p>
+    <div>
+      <ngx-datatable [rows]="rows" [columnMode]="'force'" [scrollbarH]="false" [scrollbarV]="true" [headerHeight]="48">
+        <ngx-datatable-column name="{{'coinofmonth.OPTIONS' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <input type="checkbox" name="asdf" />New Credit (NCR)
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'coinofmonth.VOTERS' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            1296
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'coinofmonth.VOTES' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            0.0124354234
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'coinofmonth.PROPORTION' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <div class="d-flex align-items-center">
+              <div class="progress flex-grow-1">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span class="ml-2" style="width: 100px">12.23%</span>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-warning" style="width: 180px">Please login first</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+.form-control {
+  border-radius: 0px;
+  border-color: $border;
+  &:focus {
+    box-shadow: none;
+  }
+}
+input.form-control,
+select.form-control {
+  height: 30px;
+}
+.input-group-text {
+  height: 30px;
+  background: #eeeded;
+  border-radius: 0px;
+}
+label.required {
+  position: relative;
+  &:after {
+    content: '*';
+    color: red;
+    top: 0px;
+    right: -35px;
+  }
+}
+.custom-checkbox {
+  position: relative;
+  padding-left: 25px;
+  span {
+    border: 1px solid $border;
+    background: white;
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    &:after {
+      left: 5px;
+      top: 1px;
+      width: 4px;
+      height: 10px;
+      border: solid #333;
+      border-width: 0 1px 1px 0;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      content: '';
+      position: absolute;
+      display: none;
+    }
+  }
+  input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  input:checked ~ span:after {
+    display: block;
+  }
+}
+.table-container {
+  padding: 0 28px 28px;
+}

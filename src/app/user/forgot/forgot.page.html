@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <div class="text-center mb-5">
+        <a [routerLink]="['/']"><img src="/assets/img/logo1.png"></a>
+    </div>
+
+    <div class="box">
+        <form autocomplete="off">
+            <h2 class="text-center">
+                <span>{{'AUTH.FORGOT_PASSWORD' | translate}}</span>
+            </h2>
+            <div class="form-group">
+                <input type="text" class="form-control" name="email"
+                       [(ngModel)]="email" placeholder="{{'AUTH.EMAIL_ADDRESS' | translate}}"/>
+            </div>
+
+            <button class="btn btn-warning w-100 btn-main mb-5" (click)="onSubmit()">{{'BUTTON.SUBMIT' | translate}}</button>
+        </form>
+    </div>
+    <user-footer></user-footer>
+</div>

@@ -1,0 +1,171 @@
+<div class="page-container">
+    <div class="container">
+        <h3 class="mb-4">
+            {{'HEADER.DEPOSIT' | translate}}
+        </h3>
+
+        <form class="box">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>{{'WALLET.SELECT_COIN_OR_TOKEN' | translate}}</label>
+                    <select class="select2" style="width: 100%;" name="coin_list" [(ngModel)]="selCoin">
+                        <option *ngFor="let coin of coins" value="{{coin.coin}}">{{coin.coin}} - {{coin.fullname}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-5" *ngIf="selCoinInfo.deposit == 0">
+                    <div class="alert alert-danger">
+                        {{'WALLET.WALLET_SUSPEND' | translate}}
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5" *ngIf="selCoinAddress == '' && selCoinInfo.deposit == 1">
+                    <h2 class="text-center">{{'WALLET.NO_WALLET' | translate}}</h2>
+                    <div class="text-center mt-5 mb-4">
+                        <button type="button" class="btn btn-warning" (click)="createWallet()">
+                            <i class="mdi mdi-wallet"></i> {{'WALLET.CREATE_WALLET' | translate}}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="selCoinAddress != '' && selCoinInfo.deposit == 1">
+                    <div class="form-group wallet-address" *ngIf="selCoin != 'XRP' && selCoin != 'CVN' && selCoin != 'DEEX' && selCoin != 'ETN' && selCoin != 'SCR'">
+                        <label>{{'WALLET.WALLET_ADDRESS' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="addressInput" value="{{selCoinAddress}}" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode(selCoinAddress)">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('addressInput')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'XRP'">
+                        <label>{{'WALLET.WALLET_ADDRESS' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="xrpInput" value="{{mainWallet.address}}" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode(mainWallet.address)">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('xrpInput')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'XRP'">
+                        <label>{{'WALLET.DESTINATION_TAG' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="xrpDestinationTag"
+                               value="{{selCoinAddress}}" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode(selCoinAddress)">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('xrpDestinationTag')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'CVN' || selCoin == 'DEEX'">
+                        <label>{{'WALLET.WALLET_ADDRESS' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="cvcoinInput" value="sk-bitshares" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode('sk-bitshares')">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('cvcoinInput')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'CVN' || selCoin == 'DEEX'">
+                        <label>{{'WALLET.MEMO' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="cvcoinMemo" value="{{selCoinAddress}}" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode(selCoinAddress)">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('cvcoinMemo')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'SCR'">
+                        <label>{{'WALLET.WALLET_ADDRESS' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="scrInput" value="sistemkoin-scr" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode('sistemkoin-scr')">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('scrInput')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'SCR'">
+                        <label>{{'WALLET.MEMO' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="scrMemo" value="{{selCoinAddress}}" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode(selCoinAddress)">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('scrMemo')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'XIN' && XINPublicKey != ''">
+                        <label>{{'WALLET.PUBLIC_KEY' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="xinPublicKey"
+                               value="{{XINPublicKey}}" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode(XINPublicKey)">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('xinPublicKey')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'ETN'">
+                        <label class="control-label">{{'WALLET.WALLET_ADDRESS' | translate}}</label>
+                        <input type="text" class="form-control text-center" id="etnInput"
+                               value="etnk2WLjSUmE8UKydvfGR1Q9jMrTnDGkNTKog1QMdKdr2RogzcRb745hTAPePBTzk9BFAkATHKNJD9hfLVvq9cCZ2ZmvYWJB5g" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode('etnk2WLjSUmE8UKydvfGR1Q9jMrTnDGkNTKog1QMdKdr2RogzcRb745hTAPePBTzk9BFAkATHKNJD9hfLVvq9cCZ2ZmvYWJB5g')">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('etnInput')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group wallet-address" *ngIf="selCoin == 'ETN'">
+                        <label class="control-label">Payment ID</label>
+                        <input type="text" class="form-control text-center" id="etnPaymentId"
+                               value="{{selCoinAddress}}" readonly>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary mr-2" (click)="showQRCode(selCoinAddress)">{{'WALLET.SHOW_QRCODE' | translate}}</button>
+                            <button type="button" class="btn btn-primary" (click)="copyAddress('etnPaymentId')">{{'WALLET.COPY_ADDRESS' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="mt-3 text-center">-->
+                <!--<button type="submit" class="btn btn-warning">{{'button.Submit' | translate}}</button>-->
+            <!--</div>-->
+        </form>
+
+        <h3 class="mt-5 mb-3">
+            {{'WALLET.DEPOSIT_HISTORY' | translate}} <a class="cursor-pointer"><i class="fa fa-refresh" (click)="refreshDepositList()"></i></a>
+        </h3>
+
+        <div class="table-responsive history-table box">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{'LABEL.STATUS' | translate}}</th>
+                    <th>{{'LABEL.AMOUNT' | translate}}</th>
+                    <th >{{'LABEL.TIME' | translate}}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let tx of depositTx">
+                    <td [ngSwitch]="tx.status">
+                        <label class="label-purple" *ngSwitchCase="0">{{'LABEL.PENDING'| translate}}</label>
+                        <label class="label-success" *ngSwitchCase="1">{{'LABEL.SUCCESS'| translate}}</label>
+                        <label class="label-danger" *ngSwitchCase="2">{{'LABEL.FAILED'| translate}}</label>
+                    </td>
+                    <td>{{tx.amount | number:'1.8-8'}}</td>
+                    <td >{{tx.datetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>
+                        <a target="_blank" href="{{selCoinInfo.explorer_url + tx.txid}}" *ngIf="tx.txid != ''" class="btn btn-sm btn-light">{{'BUTTON.DETAIL' | translate}}</a>
+                    </td>
+                </tr>
+                <tr *ngIf="depositTx?.length == 0">
+                    <td class="text-center" colspan="4">
+                        {{'WALLET.NO_DEPOSIT' | translate}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<modal-dialog [(visible)]="showQRCodeModal" [closable]="true">
+    <form class="form-horizontal">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <div class="text-center">
+                    <img class="qrCode" src="https://chart.googleapis.com/chart?chs=200x200&chld=L|2&cht=qr&chl={{qrCodeValue}}"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</modal-dialog>

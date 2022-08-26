@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="text-center mb-5">
+    <img src="/assets/img/logo1.png">
+  </div>
+
+  <div class="box mx-auto" style="max-width:800px">
+    <h2 class="text-center">{{'newdevice.title' | translate}}</h2>
+    <p class="mt-5">
+      {{'newdevice.text1' | translate}}
+      <a class="text-yellow">{{'newdevice.Device Management' | translate}}</a>.
+    </p>
+    <ul class="info mt-5">
+      <li>
+        {{'newdevice.Device' | translate}}
+        <span class="pull-right">Google Chrome</span>
+      </li>
+      <li>
+        {{'newdevice.Location' | translate}}
+        <span class="pull-right">United Kindom</span>
+      </li>
+      <li>
+        {{'newdevice.IP Address' | translate}}
+        <span class="pull-right">155.125.139.113</span>
+      </li>
+    </ul>
+  </div>
+  <footer class="mt-5">
+    <nav class="navbar navbar-expand justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/dashboard'">
+            {{'header.Term of Use' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/dashboard'">
+            {{'header.Support' | translate}}</a>
+        </li>
+        <li class="nav-item grey-br">
+          <a class="nav-link" [routerLink]="'/dashboard'">
+            {{'header.Privacy Policy' | translate}}</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fa fa-globe"></i> {{'header.English' | translate}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="text-center text-white">© 2018 Sistemkoin.com All Rights Reserved</div>
+  </footer>
+</div>

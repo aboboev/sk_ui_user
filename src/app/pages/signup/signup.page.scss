@@ -1,0 +1,77 @@
+.wrapper {
+  min-height: 100vh;
+  background-repeat: no-repeat, repeat;
+  background-image: url('/assets/img/login_number.png'),
+    linear-gradient(180deg, #6a65e2 0%, #8e77b6 60%, #ffae2e 90%);
+  background-blend-mode: screen;
+  background-position: center center;
+  padding-top: 70px;
+}
+footer {
+  font-size: 16px;
+  color: white;
+  .nav-link {
+    color: white;
+    padding: 0 15px 0 25px;
+    line-height: 1;
+  }
+  .nav-item:not(:last-child) .nav-link {
+    border-right: 1px solid white;
+  }
+}
+.box {
+  border: 0px none;
+  padding: 50px 39px 40px 39px;
+  box-shadow: 4px 5px 15px 3px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  max-width: 890px;
+  margin: 0 auto;
+}
+h2 {
+  font-size: 24px;
+  position: relative;
+  margin-bottom: 3rem;
+  &:before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    right: -3px;
+    top: 50%;
+    border-top: 1px solid #a7a7a7;
+  }
+  span {
+    display: inline-block;
+    padding: 0 20px;
+    background: white;
+    position: relative;
+    z-index: 1;
+  }
+}
+form {
+  max-width: 450px;
+  margin: 0 auto;
+}
+.form-control {
+  padding: 0px 12px 0px 25px;
+  font-size: 16px;
+  line-height: 53px;
+  height: auto;
+}
+.btn-main {
+  font-size: 20px;
+  height: 55px;
+  line-height: 55px;
+  padding: 0;
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.btn-code {
+  width: 100%;
+  height: 55px;
+  padding: 0;
+  line-height: 55px;
+  font-size: 16px;
+  background: #ffd798;
+  background: linear-gradient(180deg, #ffd798 0%, #ffae2e 90%);
+}

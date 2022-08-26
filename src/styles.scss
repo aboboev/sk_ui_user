@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+$blue: #6663e7 !default;
+$yellow: #ffb342 !default;
+$red: #f94444;
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~intl-tel-input/build/css/intlTelInput.css';
+@import '~bootstrap/scss/bootstrap.scss';
+@import './app/styles/app.scss';
+
+@import url(../node_modules/@swimlane/ngx-datatable/release/index.css);
+@import url(../node_modules/@swimlane/ngx-datatable/release/themes/material.css);
+@import url(../node_modules/@swimlane/ngx-datatable/release/assets/icons.css);

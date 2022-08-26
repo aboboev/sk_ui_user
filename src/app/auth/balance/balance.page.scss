@@ -1,0 +1,24 @@
+h6 {
+  font-size: 16px;
+}
+.mr-5 {
+  margin-right: 105px !important;
+}
+.balance-table {
+  max-height: 450px;
+  overflow-x: auto;
+  thead {
+    cursor: pointer;
+  }
+}
+.btn-sm {
+  width: 80px;
+  height: 20px;
+  font-size: 12px;
+  padding: 0;
+  line-height: 12px;
+}
+.btn-secondary {
+  background: #c1c1c1;
+  border: 0;
+}

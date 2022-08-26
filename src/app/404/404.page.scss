@@ -1,0 +1,18 @@
+h1 {
+  color: white;
+  font-size: 3.64rem;
+}
+.text-yellow {
+  font-size: 20px;
+}
+@media (min-width: 955px) {
+  .row {
+    min-height: 70vh;
+  }
+}
+
+@media (max-width: 600px) {
+  h6 {
+    font-size: 2rem;
+  }
+}

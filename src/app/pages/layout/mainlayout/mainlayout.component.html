@@ -1,0 +1,156 @@
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <a class="brand">
+            <img src="/assets/img/logo.png" alt="logo"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link white-br" [routerLink]="'/dashboard'">
+                        <img src="/assets/icon/exchange.png" alt="exchange">{{'header.Exchange' | translate}}</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link white-br" [routerLink]="'/dashboard'">
+                        <img src="/assets/icon/labs.png" alt="exchange">{{'header.Labs' | translate}}</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link white-br" [routerLink]="'/dashboard'">
+                        <img src="/assets/icon/launchpad.png" alt="exchange">{{'header.LaunchPad' | translate}} </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        <img src="/assets/icon/info.png" alt="exchange">{{'header.Info' | translate}}</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'header.Join Us' | translate}}</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'header.Support' | translate}}</a>
+                </li>
+                <li class="nav-item grey-br" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'header.News' | translate}}</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <div class="nav-link grey-br">
+                        <a>
+                            <strong>{{'header.Login' | translate}}</strong>
+                        </a>
+                        <span class="text-grey mx-1">{{'header.or' | translate}}</span>
+                        <a>
+                            <strong class="text-yellow">{{'header.Register' | translate}}</strong>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="fa fa-globe"></i> {{'header.English' | translate}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<router-outlet></router-outlet>
+<footer>
+    <div class="row">
+        <div class="col-md-6">
+            <a class="navbar-brand mb-4" style="margin-left:-2px">
+                <img src="/assets/img/logo.png" alt="logo"/>
+            </a>
+            <div class="mb-3 social-icons">
+                <a>
+                    <img src="/assets/icon/plane.png" alt="plane">
+                </a>
+                <a>
+                    <img src="/assets/icon/facebook.png" alt="plane">
+                </a>
+                <a>
+                    <img src="/assets/icon/twitter.png" alt="plane">
+                </a>
+                <a>
+                    <img src="/assets/icon/instagram.png" alt="plane">
+                </a>
+                <a>
+                    <img src="/assets/icon/m.png" alt="plane">
+                </a>
+                <a>
+                    <img src="/assets/icon/android.png" alt="plane">
+                </a>
+                <a>
+                    <img src="/assets/icon/restaurant.png" alt="plane">
+                </a>
+
+            </div>
+            <p>
+                © 2018 Sistemkoin.com All Rights Reserved
+            </p>
+        </div>
+        <div class="col-md-2 mt-md-4">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mb-2" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.How to Buy Coin' | translate}}</a>
+                </li>
+                <li class="nav-item mb-2" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.Coin Overview' | translate}}</a>
+                </li>
+                <li class="nav-item mb-2 mb-md-0" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.How to Sell Coin' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2 mt-md-4">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mb-2" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.Contact Us' | translate}}</a>
+                </li>
+                <li class="nav-item mb-2" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.API' | translate}}</a>
+                </li>
+                <li class="nav-item mb-2 mb-md-0" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.Terms & Conditions' | translate}} </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2 mt-md-4">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mb-2" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/about-us'">
+                        {{'footer.About Us' | translate}}</a>
+                </li>
+                <li class="nav-item mb-2" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.Commission' | translate}}</a>
+                </li>
+                <li class="nav-item mb-2 mb-md-0" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="'/dashboard'">
+                        {{'footer.Request form for listing' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>

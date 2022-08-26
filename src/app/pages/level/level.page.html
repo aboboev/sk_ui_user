@@ -1,0 +1,81 @@
+<div class="page-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="box box1">
+          <div class="position-relative" style="z-index: 1">
+            <h6 class="text-center">{{'level.Your Current Level' | translate}}</h6>
+            <h1 class="text-yellow text-center">SILVER</h1>
+            <div class="text-12">
+              {{'level.text1' | translate}}
+              <strong class="text-yellow">25.00000000</strong> {{'level.text2' | translate}}
+              <strong class="text-yellow">500.00000000</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="box h-100 d-flex flex-column justify-content-between">
+          <div>
+            <label>{{'level.label1' | translate}}:
+              <strong class="text-18">0.00000000 BTC</strong>
+            </label>
+            <div class="box bg-light text-center">
+              <h6>0.00% (0.00000000 / 100.00 BTC)</h6>
+            </div>
+          </div>
+
+          <div>
+            <label>{{'level.label2' | translate}}:
+              <strong class="text-18">0.00000000 BTC</strong>
+            </label>
+            <div class="box bg-light text-center">
+              <h6>0.00% (0.00000000 / 50.00 SMK)</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box box2">
+      <div class="higher-content">
+        <h6 class="text-yellow">{{'level.How Does it Works?' | translate}}</h6>
+        <ul>
+          <li>{{'level.list_text1' | translate}}</li>
+          <li>{{'level.list_text2' | translate}}</li>
+          <li>{{'level.list_text3' | translate}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-right my-2">
+      {{'level.What does Maker/Taker means' | translate}}
+      <i class="fa fa-question-circle" tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+    </div>
+    <div class="table-container mb-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{{'table.TIER' | translate}}</th>
+            <th class="text-center">{{'table.30D TRADE VOLUME' | translate}} (BTC)</th>
+            <th>{{'table.SMK HOLDINGS' | translate}}</th>
+            <th>{{'table.MAKER' | translate}}</th>
+            <th>{{'table.TAKER' | translate}}</th>
+            <th>{{'table.MAKER' | translate}}</th>
+            <th>{{'table.TAKER' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of annoucements | paginate: { itemsPerPage: 16,currentPage: 1,totalItems: 100 }">
+            <td>Diamond</td>
+            <td class="text-center">&lt;150 </td>
+            <td>&gt; 0 SMK</td>
+            <td>0.0400%</td>
+            <td>0.0800%</td>
+            <td>0.0400%</td>
+            <td>0.0800%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

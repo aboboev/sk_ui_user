@@ -1,0 +1,22 @@
+<div class="page-container">
+  <div class="container">
+    <h3 class="text-center position-relative mb-5 pb-5">
+      {{'news.title' | translate}}
+      <input type="text" class="form-control position-absolute w-auto" placeholder="{{'header.Search' | translate}}" style="top:0;right:0;"
+      />
+    </h3>
+
+    <div class="row mb-5">
+      <div class="col-sm-6" *ngFor="let item of annoucements | paginate: { itemsPerPage: 16,currentPage: 1,totalItems: 100 }" [routerLink]="['/announcement/1']">
+        <div class="box">
+          {{item.title}}
+          <span class="float-right">
+            {{item.date}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <pagination-controls directionLinks="true" autoHide="true" previousLabel="" nextLabel="" screenReaderPageLabel="page">
+    </pagination-controls>
+  </div>
+</div>

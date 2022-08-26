@@ -1,0 +1,133 @@
+<div class="page-container">
+  <div class="container">
+    <h3 class="text-center mb-4">
+      {{'transaction.title' | translate}}
+    </h3>
+    <div class="d-flex">
+      <div class="col-md-6 box mr-md-2">
+        <h5 class="text-center">USD {{'transaction.Deposit' | translate}}</h5>
+        <div class="form-group row">
+          <label class="col-12">{{'transaction.Deposit Amount' | translate}}</label>
+          <div class="col-sm-8">
+            <input class="form-control" placeholder="0">
+          </div>
+          <div class="col-sm-4 pl-md-5 mt-2 mt-sm-0">
+            <button class="btn btn-primary w-100 with-border with-control">{{'transaction.via ePay' | translate}}</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{'transaction.Select IBAN Code' | translate}}</label>
+          <select class="form-control">
+            <option>DE89 3704 0044 0532 0130 00 Germany</option>
+          </select>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label>{{'transaction.The amount you want to deposit' | translate}}</label>
+            <input class="form-control" placeholder="0.00 $">
+          </div>
+          <div class="col-sm-6">
+            <label>{{'transaction.Deposit Fee' | translate}}</label>
+            <input class="form-control" placeholder="0.00 $">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label>{{'transaction.Amount to deposit' | translate}}</label>
+            <input class="form-control" placeholder="0.00 $">
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-primary with-border primary-size">{{'transaction.Deposit' | translate}} USD</button>
+        </div>
+      </div>
+
+      <div class="col-md-6 box">
+        <h5 class="text-center">USD {{'transaction.Withdraw' | translate}}</h5>
+        <div class="form-group row">
+          <label class="col-12">{{'transaction.Withdraw Amount' | translate}}</label>
+          <div class="col-sm-8">
+            <input class="form-control" placeholder="0">
+          </div>
+          <div class="col-sm-4 pl-md-5 mt-2 mt-sm-0">
+            <button class="btn btn-primary w-100 with-border with-control">{{'transaction.via ePay' | translate}}</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{'transaction.Your IBAN Code' | translate}}</label>
+          <select class="form-control">
+            <option>DE89 3704 0044 0532 0130 00 Germany</option>
+          </select>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label>{{'transaction.Balance' | translate}}</label>
+            <input class="form-control" placeholder="0.00 $">
+          </div>
+          <div class="col-sm-6">
+            <label>{{'transaction.The amount you want to withdraw' | translate}}</label>
+            <input class="form-control" placeholder="0.00 $">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label>{{'transaction.Withdraw Fee' | translate}}</label>
+            <input class="form-control" placeholder="0.00 $">
+          </div>
+          <div class="col-sm-6">
+            <label>{{'transaction.Amount to withdraw' | translate}}</label>
+            <input class="form-control" placeholder="0.00 $">
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-warning with-border primary-size">{{'transaction.Withdraw' | translate}} USD</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="my-4 text-center">
+      {{'transaction.title2' | translate}}
+    </h3>
+    <div>
+      <ngx-datatable [rows]="rows" [columnMode]="'force'" [scrollbarV]="true" [headerHeight]="48">
+        <ngx-datatable-column name="{{'table.TRANSACTION' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            WIthdraw
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'table.AMOUNT' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            $500.00
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'table.DATE/TIME' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            07/21/2018 22:04:07
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'table.STATUS' | translate}}">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <span class="text-success">{{'table.COMPLETED' | translate}}</span>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [width]="70">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <button class="btn btn-sm btn-light">{{'button.View Detail' | translate}}</button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</div>

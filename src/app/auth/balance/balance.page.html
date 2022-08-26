@@ -1,0 +1,65 @@
+<div class="page-container">
+    <div class="container">
+        <h3 class="mb-4">
+            {{'LABEL.BALANCE' | translate}}
+        </h3>
+        <div class="d-flex align-items-center">
+            <div class="mr-5">
+                {{'WALLET.ESTIMATED_VALUE' | translate}} :
+                <h6>{{total_btc | number:'1.8-8'}} BTC / <i class="fa fa-turkish-lira"></i> {{(total_btc * btc_tl) | number:'1.2-2'}}</h6>
+            </div>
+            <!--<div class="mr-5">-->
+                <!--{{'balance.24h withdrawa Limit' | translate}} :-->
+                <!--<h6>100 BTC</h6>-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--{{'balance.In Use' | translate}} :-->
+                <!--<h6>0 BTC</h6>-->
+            <!--</div>-->
+            <input type="text" class="form-control ml-auto w-auto" placeholder="{{'LABEL.SEARCH' | translate}}" [(ngModel)]="filtertxt" (ngModelChange)="onFilter()"/>
+        </div>
+
+        <div class="box table-responsive balance-table">
+            <loader *ngIf="loading"></loader>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{'LABEL.COIN' | translate}}</th>
+                    <th>{{'LABEL.FULL_NAME' | translate}}</th>
+                    <th class="text-right" (click)="onSortTable('total_amount')">{{'LABEL.TOTAL_BALANCE' | translate}}
+                        <i class="fa" [ngClass]="{'fa-caret-up': sortColumn == 'total_amount' && sortOrder == 'asc', 'fa-caret-down': sortColumn == 'total_amount' && sortOrder == 'desc'}"></i>
+                    </th>
+                    <th class="text-right" (click)="onSortTable('order_amount')">{{'LABEL.IN_ORDER' | translate}}
+                        <i class="fa" [ngClass]="{'fa-caret-up': sortColumn == 'order_amount' && sortOrder == 'asc', 'fa-caret-down': sortColumn == 'order_amount' && sortOrder == 'desc'}"></i>
+                    </th>
+                    <th class="text-right" (click)="onSortTable('available_amount')">{{'LABEL.AVAILABLE_BALANCE' | translate}}
+                        <i class="fa" [ngClass]="{'fa-caret-up': sortColumn == 'available_amount' && sortOrder == 'asc', 'fa-caret-down': sortColumn == 'available_amount' && sortOrder == 'desc'}"></i>
+                    </th>
+                    <th class="text-right" (click)="onSortTable('btc_value')">{{'LABEL.BTC_VALUE' | translate}}
+                        <i class="fa" [ngClass]="{'fa-caret-up': sortColumn == 'btc_value' && sortOrder == 'asc', 'fa-caret-down': sortColumn == 'btc_value' && sortOrder == 'desc'}"></i>
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let coin of coins">
+                    <td><img src="assets/img/coin/{{coin.coin}}.png" style="height: 20px;"> {{coin.coin}}</td>
+                    <td>{{coin.fullname}}</td>
+                    <td class="text-right">{{coin.total_amount | number:'1.8-8'}}</td>
+                    <td class="text-right">{{coin.order_amount | number:'1.8-8'}}</td>
+                    <td class="text-right">{{coin.available_amount | number:'1.8-8'}}</td>
+                    <td class="text-right">{{(coin.available_amount * coin.btc_price) | number:'1.8-8'}}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-info" (click)="onClickDeposit(coin.coin)">
+                            <i class="mdi mdi-view-dashboard"></i>Deposit
+                        </button>
+                        <button type="button" class="ml-3 btn btn-success" (click)="onClickWithdraw(coin.coin)">
+                            <i class="mdi mdi-view-dashboard"></i>Withdraw
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
